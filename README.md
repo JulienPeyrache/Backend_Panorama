@@ -62,6 +62,29 @@ $ npm run test:cov
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
+## Commandes de docker : 
+pour lancer la base de données, taper : 
+$docker-compose up -d
+$docker exec -it db mysql --user=panorama --password=panorama
+puis 
+$use panorama-db
+Pour ajouter une table, il faut faire
+
+$CREATE TABLE Persons (
+  PersonID int, 
+  Lastname varchar(255),
+  Firstname varchar(255),
+);
+
+pour insérer une valeur il faut faire 
+$INSERT INTO Persons
+$VALUES(1, 'test', 'test');
+
+pour avoir le résultat d'une requête sql, la taper directement : 
+$SELECT * FROM Persons
+
+pour quitter : entre
+$exit
 ## Stay in touch
 
 - Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
