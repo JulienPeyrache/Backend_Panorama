@@ -6,7 +6,7 @@ export class Building {
     id_building: number;
 
     @Column()
-    adress: string;
+    address: string;
 
     @Column()
     postal_code: number;
