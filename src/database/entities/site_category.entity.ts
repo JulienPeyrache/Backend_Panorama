@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Category_service {
+export class Site_category {
     @PrimaryGeneratedColumn()
     id_site_category: number;
 

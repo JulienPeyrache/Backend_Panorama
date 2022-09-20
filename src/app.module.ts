@@ -14,6 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             database: 'panorama-db',
             entities: [__dirname + '/**/*.entity{.ts,.js}'],
             synchronize: true, // shouldn't be used in production
+            migrations: ['src/database/migrations/*{.ts,.js}'],
         }),
     ],
     controllers: [AppController],

@@ -62,6 +62,13 @@ $ npm run test:cov
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
+## Commandes de migration
+
+- To generate migration : $ npm run typeorm:generate-migration --name=XXXXX
+- To run migration : $ npm run typeorm:run-migrations
+- To revert migration : $ npm run typeorm:revert-migration
+- To create migration : $ npm run typeorm:create-migration --name=XXXXX
+
 ## Commandes de docker : 
 pour lancer la base de données, taper : 
 $docker-compose up -d
