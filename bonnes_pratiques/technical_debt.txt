@@ -1,0 +1,7 @@
+Attention : 
+
+- la génération de migration n'est pas parfaite :
+1. Le changement de nom de colonne drop les colonnes qui changent, perdant donc les données. 
+2. La nouvelle colonne apparaît à la fin.  
+3. Les opérations opérées ne correspondent pas à ce qui est demandé.
+

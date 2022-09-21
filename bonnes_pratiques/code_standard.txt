@@ -1,0 +1,8 @@
+Liste des standards de code de chaque document : 
+
+- les variables ont un nom explicit 
+- les fonctions ont un nom explicit, et sont typées
+- un commentaire explique le rôle des fonctions peu évidentes
+- un commentaire explique les branchements / sauts si les conditions ne sont pas évidentes
+(ex : if (i>12) aura un commentaire qui expliquera la présence du 12)
+(ex : while (a*b <0) doit expliquer pourquoi on doit avoir a et b de signes opposés)
