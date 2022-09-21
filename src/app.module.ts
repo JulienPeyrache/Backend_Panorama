@@ -2,21 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import ormConfigOptions from './database/typeormoptions.config';
 
 @Module({
-    imports: [
-        TypeOrmModule.forRoot({
-            type: 'mysql',
-            host: 'localhost',
-            port: 3306,
-            username: 'panorama',
-            password: 'panorama',
-            database: 'panorama-db',
-            entities: [__dirname + '/**/*.entity{.ts,.js}'],
-            synchronize: true, // shouldn't be used in production
-            migrations: ['src/database/migrations/*{.ts,.js}'],
-        }),
-    ],
+    imports: [TypeOrmModule.forRoot(ormConfigOptions)],
     controllers: [AppController],
     providers: [AppService],
 })

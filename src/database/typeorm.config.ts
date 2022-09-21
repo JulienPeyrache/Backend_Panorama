@@ -1,15 +1,6 @@
 import { DataSource } from 'typeorm';
+import ormConfigOptions from './typeormoptions.config';
 
-const ormConfig = new DataSource({
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'panorama',
-    password: 'panorama',
-    database: 'panorama-db',
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    synchronize: true, // shouldn't be used in production
-    migrations: ['src/database/migrations/*{.ts,.js}'],
-});
+const ormConfig: DataSource = new DataSource(ormConfigOptions);
 
 export default ormConfig;
