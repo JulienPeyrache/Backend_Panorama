@@ -8,7 +8,7 @@ const ormConfigOptions: DataSourceOptions = {
     password: 'panorama',
     database: 'panorama-db',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    synchronize: true, // shouldn't be true in production
+    synchronize: false, // shouldn't be true in production
     migrations: ['src/database/migrations/*{.ts,.js}'],
 };
 
