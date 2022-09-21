@@ -1,0 +1,8 @@
+Liste des standards de code de chaque document : 
+
+- les variables ont un nom explicit 
+- les fonctions ont un nom explicit, et sont typées
+- un commentaire explique le rôle des fonctions peu évidentes
+- créer des fonctions intermédiaires pour expliquer les conditions non évidentes
+(ex : if (i>12) sera écrit if (f()) avec f un nom de fonction qui expliquera l'intérêt de la comparaison à 12)
+(ex : de même pour while (a*b <0), qui sera while (f()))
