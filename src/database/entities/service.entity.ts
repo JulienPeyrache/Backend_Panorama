@@ -1,13 +1,21 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Glossary } from './glossary.entity';
+import { Course } from './course.entity';
 
 @Entity()
 export class Service {
     @PrimaryGeneratedColumn()
-    id_service: number;
+    id: number;
 
     @Column()
-    acronym: string;
+    code_service: string;
 
     @Column()
-    name: string;
+    label_service: string;
+
+    @ManyToOne(() => Course, (course) => course.services)
+    course: Course;
+
+    @OneToMany(() => Glossary, (glossary) => glossary.service)
+    definitions: Glossary[];
 }
