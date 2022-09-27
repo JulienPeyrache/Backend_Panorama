@@ -5,12 +5,18 @@ import { Course } from './course.entity';
 @Entity()
 export class Service {
 <<<<<<< HEAD
+<<<<<<< HEAD
     @PrimaryGeneratedColumn("uuid")
     id_service: number;
 =======
     @PrimaryGeneratedColumn()
     id: number;
 >>>>>>> a4d99ec (create some first entities)
+=======
+
+    @PrimaryGeneratedColumn("uuid")
+    id_service: number;
+>>>>>>> 0ce7ef4 (init modification typerorm)
 
     @Column()
     code_service: string;
