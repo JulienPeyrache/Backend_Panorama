@@ -1,12 +1,13 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, OneToMany, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { ValueEquipmentSite } from './value_equipment_site.entity';
+import { ValueItemSite } from './value_item_site.entity';
+import { Building } from './building.entity';
+import { AttachedService } from './attached_service.entity';
 
 @Entity()
 export class Site {
     @PrimaryColumn()
-    id_site: number;
-
-    @Column()
-    id_building: number;
+    id: number;
 
     @Column()
     typology_site: string;
@@ -18,11 +19,24 @@ export class Site {
     ET_organisation: string;
 
     @Column()
-    id_site_responsible: number;
-
-    @Column()
-    id_collecter: number;
+    is_courrier: boolean;
 
     @Column()
     comments: string;
+
+    @OneToMany(
+        () => ValueEquipmentSite,
+        (valuesEquipmentSite) => valuesEquipmentSite.site,
+    )
+    valuesEquipmentSite: ValueEquipmentSite[];
+
+    @OneToMany(() => ValueItemSite, (valuesItemSite) => valuesItemSite.site)
+    valuesItemSite: ValueItemSite[];
+
+    @ManyToOne(() => Building, (building) => building.sites)
+    building: Building;
+
+    @ManyToMany(() => AttachedService, (attachedServices) => attachedServices.sites)
+    @JoinTable()
+    attachedServices: AttachedService[];
 }

@@ -1,9 +1,14 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, OneToMany } from 'typeorm';
+import { ValueEquipmentBuilding } from './value_equipment_building.entity';
+import { Site } from './site.entity';
 
 @Entity()
 export class Building {
     @PrimaryColumn()
-    id_building: number;
+    id: number;
+
+    @Column()
+    name_building: string;
 
     @Column()
     address: string;
@@ -12,8 +17,17 @@ export class Building {
     postal_code: number;
 
     @Column()
-    typology_building: string;
+    city: string;
 
     @Column()
-    city: string;
+    typology_building: string;
+
+    @OneToMany(
+        () => ValueEquipmentBuilding,
+        (valuesEquipmentBuilding) => valuesEquipmentBuilding.building,
+    )
+    valuesEquipmentBuilding: ValueEquipmentBuilding[];
+
+    @OneToMany(() => Site, (site) => site.building)
+    sites: Site[];
 }
