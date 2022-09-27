@@ -1,13 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Category_service {
-    @PrimaryGeneratedColumn()
+export class Attached_Service {
+    @PrimaryGeneratedColumn("uuid")
     id_category: number;
 
     @Column()
     id_service: number;
 
     @Column()
-    item: string;
+    label: string;
 }

@@ -1,8 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Equipment_site {
-    @PrimaryGeneratedColumn()
+export class Value_Equipment_Site {
+    @PrimaryGeneratedColumn("uuid")
     id_value: number;
 
     @Column()
