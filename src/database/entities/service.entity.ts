@@ -19,4 +19,7 @@ export class Service {
 
     @OneToMany(() => Glossary, (glossary) => glossary.service)
     definitions: Glossary[];
+
+    @OneToMany(() => AttachedService, (attachedService) => attachedService.service)
+    attachedServices: AttachedService[];
 }
