@@ -3,7 +3,7 @@ import { Service } from './service.entity';
 
 @Entity()
 export class Course {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: number;
 
     @Column()

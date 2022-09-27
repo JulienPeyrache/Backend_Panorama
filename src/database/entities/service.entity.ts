@@ -11,7 +11,6 @@ export class Service {
     code_service: string;
 
     @Column()
-
     label_service: string;
 
     @ManyToOne(() => Course, (course) => course.services)
@@ -19,4 +18,4 @@ export class Service {
 
     @OneToMany(() => Glossary, (glossary) => glossary.service)
     definitions: Glossary[];
-
+}
