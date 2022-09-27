@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryColumn, OneToMany } from 'typeorm';
 import { ValueEquipmentBuilding } from './value_equipment_building.entity';
+import { Site } from './site.entity';
 
 @Entity()
 export class Building {
@@ -26,4 +27,7 @@ export class Building {
         (valuesEquipmentBuilding) => valuesEquipmentBuilding.building,
     )
     valuesEquipmentBuilding: ValueEquipmentBuilding[];
+
+    @OneToMany(() => Site, (site) => site.building)
+    sites: Site[];
 }

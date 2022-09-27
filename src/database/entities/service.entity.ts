@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Glossary } from './glossary.entity';
 import { Course } from './course.entity';
+import { AttachedService } from './attached_service.entity';
 
 @Entity()
 export class Service {
@@ -18,4 +19,7 @@ export class Service {
 
     @OneToMany(() => Glossary, (glossary) => glossary.service)
     definitions: Glossary[];
+
+    @OneToMany(() => AttachedService, (attachedService) => attachedService.service)
+    attachedServices: AttachedService[];
 }
