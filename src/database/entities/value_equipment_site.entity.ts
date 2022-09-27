@@ -10,9 +10,9 @@ export class ValueEquipmentSite {
     @Column()
     description: string;
 
-    @ManyToOne(() => Site, (site) => site.id_site)
+    @ManyToOne(() => Site, (site) => site.valuesEquipmentSite)
     site: Site;
 
-    @ManyToOne(() => Equipment, (equipment) => equipment.id)
+    @ManyToOne(() => Equipment, (equipment) => equipment.valuesEquipmentSite)
     equipment: Equipment;
 }

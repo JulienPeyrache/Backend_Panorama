@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ValueEquipmentSite } from './value_equipment_site.entity';
 
 @Entity()
 export class Equipment {
@@ -7,4 +8,10 @@ export class Equipment {
 
     @Column()
     label_equipment: string;
+
+    @OneToMany(
+        () => ValueEquipmentSite,
+        (valuesEquipmentSite) => valuesEquipmentSite.equipment,
+    )
+    valuesEquipmentSite: ValueEquipmentSite[];
 }
