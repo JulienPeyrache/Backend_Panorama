@@ -1,17 +1,17 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class InitDB1664287764941 implements MigrationInterface {
-    name = 'InitDB1664287764941'
+export class InitDB1664289494343 implements MigrationInterface {
+    name = 'InitDB1664289494343'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE \`glossary\` (\`id\` varchar(36) NOT NULL, \`keyword\` varchar(255) NOT NULL, \`definition\` varchar(255) NOT NULL, \`serviceId\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`course\` (\`id\` varchar(36) NOT NULL, \`code_course\` varchar(255) NOT NULL, \`label_course\` varchar(255) NOT NULL, \`description\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`service\` (\`id\` varchar(36) NOT NULL, \`code_service\` varchar(255) NOT NULL, \`label_service\` varchar(255) NOT NULL, \`courseId\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`building\` (\`id\` int NOT NULL, \`name_building\` varchar(255) NOT NULL, \`address\` varchar(255) NOT NULL, \`postal_code\` int NOT NULL, \`city\` varchar(255) NOT NULL, \`typology_building\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`building\` (\`id\` int NOT NULL, \`name_building\` varchar(255) NOT NULL, \`address\` varchar(255) NOT NULL, \`postal_code\` int NOT NULL, \`city\` varchar(255) NOT NULL, \`typology_building\` enum ('Mixte', 'PAP', 'Technique', 'Tertiaire') NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`value_equipment_building\` (\`id\` varchar(36) NOT NULL, \`description\` varchar(255) NOT NULL, \`buildingId\` int NULL, \`equipmentId\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`equipment\` (\`id\` varchar(36) NOT NULL, \`label_equipment\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`value_equipment_site\` (\`id\` varchar(36) NOT NULL, \`description\` varchar(255) NOT NULL, \`siteId\` int NULL, \`equipmentId\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`site\` (\`id\` int NOT NULL, \`typology_site\` varchar(255) NOT NULL, \`immo\` varchar(255) NOT NULL, \`ET_organisation\` varchar(255) NOT NULL, \`is_courrier\` tinyint NOT NULL, \`comments\` varchar(255) NOT NULL, \`buildingId\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`site\` (\`id\` int NOT NULL, \`typology_site\` enum ('ARCHIVES', 'CRC PRO', 'CRC COM', 'CRC SIN', 'CRD MACIF DIRECT', 'Espace Restauration', 'IRD', 'PAP', 'RE', 'SGD', 'SUPPORT', 'Tertiaire') NOT NULL, \`immo\` enum ('AMM', 'CNP', 'FE', 'Nord Est', 'Ouest', 'Sud Est') NOT NULL, \`ET_organisation\` enum ('AMM', 'DIET CNP', 'FE', 'Nord Est', 'Ouest', 'Sud Est') NOT NULL, \`is_courrier\` tinyint NOT NULL, \`comments\` varchar(255) NOT NULL, \`buildingId\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`value_item_site\` (\`id\` varchar(36) NOT NULL, \`description\` varchar(255) NOT NULL, \`siteId\` int NULL, \`itemId\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`item\` (\`id\` varchar(36) NOT NULL, \`label_item\` varchar(255) NOT NULL, \`default_value\` varchar(255) NULL, \`is_occupant_info\` tinyint NOT NULL, \`attachedServiceId\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`attached_service\` (\`id\` varchar(36) NOT NULL, \`label_attached_service\` varchar(255) NOT NULL, \`serviceId\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);

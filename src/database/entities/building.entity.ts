@@ -2,6 +2,13 @@ import { Column, Entity, PrimaryColumn, OneToMany } from 'typeorm';
 import { ValueEquipmentBuilding } from './value_equipment_building.entity';
 import { Site } from './site.entity';
 
+export enum TypologyBuilding {
+    MIXTE = 'Mixte',
+    PAP = 'PAP',
+    TECHNIQUE = 'Technique',
+    TERTIAIRE = 'Tertiaire',
+}
+
 @Entity()
 export class Building {
     @PrimaryColumn()
@@ -19,8 +26,8 @@ export class Building {
     @Column()
     city: string;
 
-    @Column()
-    typology_building: string;
+    @Column({ type: 'enum', enum: TypologyBuilding })
+    typology_building: TypologyBuilding;
 
     @OneToMany(
         () => ValueEquipmentBuilding,

@@ -4,19 +4,52 @@ import { ValueItemSite } from './value_item_site.entity';
 import { Building } from './building.entity';
 import { AttachedService } from './attached_service.entity';
 
+export enum TypologySite {
+    ARCHIVES = 'ARCHIVES',
+    CRC_PRO = 'CRC PRO',
+    CRC_COM = 'CRC COM',
+    CRC_SIN = 'CRC SIN',
+    CRD_MACIF_DIRECT = 'CRD MACIF DIRECT',
+    ESPACE_RESTAURATION = 'Espace Restauration',
+    IRD = 'IRD',
+    PAP = 'PAP',
+    RE = 'RE',
+    SGD = 'SGD',
+    SUPPORT = 'SUPPORT',
+    TERTIAIRE = 'Tertiaire',
+}
+
+export enum Immo {
+    AMM = 'AMM',
+    CNP = 'CNP',
+    FE = 'FE',
+    NORD_EST = 'Nord Est',
+    OUEST = 'Ouest',
+    SUD_EST = 'Sud Est',
+}
+
+export enum ETOrganisation {
+    AMM = 'AMM',
+    DIET_CNP = 'DIET CNP',
+    FE = 'FE',
+    NORD_EST = 'Nord Est',
+    OUEST = 'Ouest',
+    SUD_EST = 'Sud Est',
+}
+
 @Entity()
 export class Site {
     @PrimaryColumn()
     id: number;
 
-    @Column()
-    typology_site: string;
+    @Column({ type: 'enum', enum: TypologySite })
+    typology_site: TypologySite;
 
-    @Column()
-    immo: string;
+    @Column({ type: 'enum', enum: Immo })
+    immo: Immo;
 
-    @Column()
-    ET_organisation: string;
+    @Column({ type: 'enum', enum: ETOrganisation })
+    ET_organisation: ETOrganisation;
 
     @Column()
     is_courrier: boolean;
