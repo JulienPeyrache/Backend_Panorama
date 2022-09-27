@@ -4,30 +4,14 @@ import { Course } from './course.entity';
 
 @Entity()
 export class Service {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    @PrimaryGeneratedColumn("uuid")
-    id_service: number;
-=======
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: number;
->>>>>>> a4d99ec (create some first entities)
-=======
-
-    @PrimaryGeneratedColumn("uuid")
-    id_service: number;
->>>>>>> 0ce7ef4 (init modification typerorm)
 
     @Column()
     code_service: string;
 
     @Column()
-<<<<<<< HEAD
-    label: string;
 
-    @Column()
-    course: string;
-=======
     label_service: string;
 
     @ManyToOne(() => Course, (course) => course.services)
@@ -35,5 +19,4 @@ export class Service {
 
     @OneToMany(() => Glossary, (glossary) => glossary.service)
     definitions: Glossary[];
->>>>>>> a4d99ec (create some first entities)
-}
+
