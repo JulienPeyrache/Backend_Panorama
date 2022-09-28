@@ -4,7 +4,7 @@ import { Building } from './building.entity';
 
 @Entity()
 export class ValueEquipmentBuilding {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
@@ -13,6 +13,9 @@ export class ValueEquipmentBuilding {
     @ManyToOne(() => Building, (building) => building.valuesEquipmentBuilding)
     building: Building;
 
-    @ManyToOne(() => Equipment, (equipment) => equipment.valuesEquipmentBuilding)
+    @ManyToOne(
+        () => Equipment,
+        (equipment) => equipment.valuesEquipmentBuilding,
+    )
     equipment: Equipment;
 }

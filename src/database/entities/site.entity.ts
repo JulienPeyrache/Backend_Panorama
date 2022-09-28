@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryColumn, OneToMany, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import {
+    Column,
+    Entity,
+    PrimaryColumn,
+    OneToMany,
+    ManyToOne,
+    ManyToMany,
+    JoinTable,
+} from 'typeorm';
 import { ValueEquipmentSite } from './value_equipment_site.entity';
 import { ValueItemSite } from './value_item_site.entity';
 import { Building } from './building.entity';
@@ -69,7 +77,10 @@ export class Site {
     @ManyToOne(() => Building, (building) => building.sites)
     building: Building;
 
-    @ManyToMany(() => AttachedService, (attachedServices) => attachedServices.sites)
+    @ManyToMany(
+        () => AttachedService,
+        (attachedServices) => attachedServices.sites,
+    )
     @JoinTable()
     attachedServices: AttachedService[];
 }

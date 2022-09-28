@@ -3,7 +3,7 @@ import { Service } from './service.entity';
 
 @Entity()
 export class Glossary {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()

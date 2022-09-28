@@ -1,10 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+    OneToMany,
+} from 'typeorm';
 import { AttachedService } from './attached_service.entity';
 import { ValueItemSite } from './value_item_site.entity';
 
 @Entity()
 export class Item {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
@@ -16,7 +22,10 @@ export class Item {
     @Column()
     is_occupant_info: boolean;
 
-    @ManyToOne(() => AttachedService, (attachedService) => attachedService.items)
+    @ManyToOne(
+        () => AttachedService,
+        (attachedService) => attachedService.items,
+    )
     attachedService: AttachedService;
 
     @OneToMany(() => ValueItemSite, (valuesItemSite) => valuesItemSite.item)

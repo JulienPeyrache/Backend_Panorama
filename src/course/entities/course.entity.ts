@@ -1,9 +1,9 @@
 import { Entity, OneToMany, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { Service } from './service.entity';
+import { Service } from '../../database/entities/service.entity';
 
 @Entity()
 export class Course {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()

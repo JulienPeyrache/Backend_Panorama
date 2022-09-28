@@ -4,7 +4,7 @@ import { Site } from './site.entity';
 
 @Entity()
 export class ValueEquipmentSite {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()

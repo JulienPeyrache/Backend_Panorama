@@ -58,9 +58,9 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Swagger documentation for API
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+The route '/doc' will display the swagger documentation for the API
 
 ## Commandes de migration
 

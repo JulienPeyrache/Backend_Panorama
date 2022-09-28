@@ -1,11 +1,17 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Glossary } from './glossary.entity';
-import { Course } from './course.entity';
+import { Course } from '../../course/entities/course.entity';
 import { AttachedService } from './attached_service.entity';
 
 @Entity()
 export class Service {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
@@ -20,6 +26,9 @@ export class Service {
     @OneToMany(() => Glossary, (glossary) => glossary.service)
     definitions: Glossary[];
 
-    @OneToMany(() => AttachedService, (attachedService) => attachedService.service)
+    @OneToMany(
+        () => AttachedService,
+        (attachedService) => attachedService.service,
+    )
     attachedServices: AttachedService[];
 }
