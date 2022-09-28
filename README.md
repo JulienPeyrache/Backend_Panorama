@@ -60,7 +60,7 @@ $ npm run test:cov
 
 ## Swagger documentation for API
 
-The route '/doc' will display the swagger documentation for the API
+The route '/doc' will display the swagger documentation for the API.
 
 ## Commandes de migration
 
