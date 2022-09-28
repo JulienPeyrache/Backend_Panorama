@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Service } from './service.entity';
+import { Service } from '../../service/entities/service.entity';
 
 @Entity()
 export class Glossary {

@@ -6,7 +6,7 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Service } from './service.entity';
+import { Service } from '../../service/entities/service.entity';
 import { Item } from './item.entity';
 import { Site } from './site.entity';
 

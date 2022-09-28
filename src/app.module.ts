@@ -3,10 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CourseModule } from './course/course.module';
+import { ServiceModule } from './service/service.module';
 import ormConfigOptions from './database/typeormoptions.config';
 
 @Module({
-    imports: [TypeOrmModule.forRoot(ormConfigOptions), CourseModule],
+    imports: [
+        TypeOrmModule.forRoot(ormConfigOptions),
+        CourseModule,
+        ServiceModule,
+    ],
     controllers: [AppController],
     providers: [AppService],
 })
