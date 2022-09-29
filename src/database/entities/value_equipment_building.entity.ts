@@ -10,6 +10,12 @@ export class ValueEquipmentBuilding {
     @Column()
     description: string;
 
+    @Column()
+    buildingId: number;
+
+    @Column()
+    equipmentId: number;
+
     @ManyToOne(() => Building, (building) => building.valuesEquipmentBuilding)
     building: Building;
 

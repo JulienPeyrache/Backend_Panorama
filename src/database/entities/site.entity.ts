@@ -65,6 +65,9 @@ export class Site {
     @Column()
     comments: string;
 
+    @Column()
+    buildingId: number;
+
     @OneToMany(
         () => ValueEquipmentSite,
         (valuesEquipmentSite) => valuesEquipmentSite.site,

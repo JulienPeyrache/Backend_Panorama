@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { Service } from './entities/service.entity';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
@@ -12,7 +12,7 @@ export class ServiceService {
         private readonly serviceRepository: Repository<Service>,
     ) {}
 
-    create(createServiceDto: CreateServiceDto): Promise<Service> {
+    async create(createServiceDto: CreateServiceDto): Promise<Service> {
         return this.serviceRepository.save(createServiceDto);
     }
 
@@ -20,15 +20,18 @@ export class ServiceService {
         return this.serviceRepository.find();
     }
 
-    findOne(id: number): Promise<Service> {
+    async findOne(id: number): Promise<Service> {
         return this.serviceRepository.findOneBy({ id: id });
     }
 
-    update(id: number, updateServiceDto: UpdateServiceDto): Promise<any> {
+    async update(
+        id: number,
+        updateServiceDto: UpdateServiceDto,
+    ): Promise<UpdateResult> {
         return this.serviceRepository.update(id, updateServiceDto);
     }
 
-    remove(id: number): Promise<any> {
+    async remove(id: number): Promise<DeleteResult> {
         return this.serviceRepository.delete(id);
     }
 }

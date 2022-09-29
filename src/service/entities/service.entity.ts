@@ -20,6 +20,9 @@ export class Service {
     @Column()
     label_service: string;
 
+    @Column()
+    courseId: number;
+
     @ManyToOne(() => Course, (course) => course.services)
     course: Course;
 

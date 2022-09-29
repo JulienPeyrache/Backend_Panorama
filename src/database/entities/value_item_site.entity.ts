@@ -10,6 +10,12 @@ export class ValueItemSite {
     @Column()
     description: string;
 
+    @Column()
+    siteId: number;
+
+    @Column()
+    itemId: number;
+
     @ManyToOne(() => Site, (site) => site.valuesItemSite)
     site: Site;
 

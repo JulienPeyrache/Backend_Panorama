@@ -18,6 +18,9 @@ export class AttachedService {
     @Column()
     label_attached_service: string;
 
+    @Column()
+    serviceId: number;
+
     @ManyToOne(() => Service, (service) => service.attachedServices)
     service: Service;
 

@@ -12,6 +12,9 @@ export class Glossary {
     @Column()
     definition: string;
 
+    @Column()
+    serviceId: number;
+
     @ManyToOne(() => Service, (service) => service.definitions)
     service: Service;
 }

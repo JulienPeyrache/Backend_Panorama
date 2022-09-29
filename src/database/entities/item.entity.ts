@@ -22,6 +22,9 @@ export class Item {
     @Column()
     is_occupant_info: boolean;
 
+    @Column()
+    attachedServiceId: number;
+
     @ManyToOne(
         () => AttachedService,
         (attachedService) => attachedService.items,
