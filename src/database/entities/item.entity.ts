@@ -5,7 +5,7 @@ import {
     ManyToOne,
     OneToMany,
 } from 'typeorm';
-import { AttachedService } from './attached_service.entity';
+import { AttachedService } from '../../attached_service/entities/attached_service.entity';
 import { ValueItemSite } from './value_item_site.entity';
 
 @Entity()

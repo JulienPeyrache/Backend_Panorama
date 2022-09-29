@@ -7,8 +7,8 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Service } from '../../service/entities/service.entity';
-import { Item } from './item.entity';
-import { Site } from './site.entity';
+import { Item } from '../../database/entities/item.entity';
+import { Site } from '../../database/entities/site.entity';
 
 @Entity()
 export class AttachedService {

@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CourseModule } from './course/course.module';
 import { ServiceModule } from './service/service.module';
+import { AttachedServiceModule } from './attached_service/attached_service.module';
 import ormConfigOptions from './database/typeormoptions.config';
 
 @Module({
@@ -11,6 +12,7 @@ import ormConfigOptions from './database/typeormoptions.config';
         TypeOrmModule.forRoot(ormConfigOptions),
         CourseModule,
         ServiceModule,
+        AttachedServiceModule,
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Glossary } from '../../database/entities/glossary.entity';
 import { Course } from '../../course/entities/course.entity';
-import { AttachedService } from '../../database/entities/attached_service.entity';
+import { AttachedService } from '../../attached_service/entities/attached_service.entity';
 
 @Entity()
 export class Service {
