@@ -6,6 +6,7 @@ import { CourseModule } from './course/course.module';
 import { ServiceModule } from './service/service.module';
 import { AttachedServiceModule } from './attached_service/attached_service.module';
 import { GlossaryModule } from './glossary/glossary.module';
+import { ItemModule } from './item/item.module';
 import ormConfigOptions from './database/typeormoptions.config';
 
 @Module({
@@ -15,6 +16,7 @@ import ormConfigOptions from './database/typeormoptions.config';
         ServiceModule,
         AttachedServiceModule,
         GlossaryModule,
+        ItemModule,
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -7,7 +7,7 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Service } from '../../service/entities/service.entity';
-import { Item } from '../../database/entities/item.entity';
+import { Item } from '../../item/entities/item.entity';
 import { Site } from '../../database/entities/site.entity';
 
 @Entity()
