@@ -49,4 +49,19 @@ export class AttachedServiceController {
     remove(@Param('id') id: string) {
         return this.attachedServiceService.remove(+id);
     }
+
+    @Patch(':id/addToSite/:siteId')
+    addToSite(@Param('id') id: string, @Param('siteId') siteId: string) {
+        return this.attachedServiceService.addToSite(+id, +siteId);
+    }
+
+    @Patch(':id/removeFromSite/:siteId')
+    removeFromSite(@Param('id') id: string, @Param('siteId') siteId: string) {
+        return this.attachedServiceService.removeFromSite(+id, +siteId);
+    }
+
+    @Get(':id/isOnSite/:siteId')
+    isOnSite(@Param('id') id: string, @Param('siteId') siteId: string) {
+        return this.attachedServiceService.isOnSite(+id, +siteId);
+    }
 }
