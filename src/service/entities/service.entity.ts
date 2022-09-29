@@ -5,7 +5,7 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Glossary } from '../../database/entities/glossary.entity';
+import { Glossary } from '../../glossary/entities/glossary.entity';
 import { Course } from '../../course/entities/course.entity';
 import { AttachedService } from '../../attached_service/entities/attached_service.entity';
 
