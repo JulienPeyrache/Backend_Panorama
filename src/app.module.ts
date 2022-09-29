@@ -9,6 +9,7 @@ import { GlossaryModule } from './glossary/glossary.module';
 import { ItemModule } from './item/item.module';
 import { EquipmentModule } from './equipment/equipment.module';
 import { BuildingModule } from './building/building.module';
+import { SiteModule } from './site/site.module';
 import ormConfigOptions from './database/typeormoptions.config';
 
 @Module({
@@ -21,6 +22,7 @@ import ormConfigOptions from './database/typeormoptions.config';
         ItemModule,
         EquipmentModule,
         BuildingModule,
+        SiteModule,
     ],
     controllers: [AppController],
     providers: [AppService],

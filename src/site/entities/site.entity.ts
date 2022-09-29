@@ -7,8 +7,8 @@ import {
     ManyToMany,
     JoinTable,
 } from 'typeorm';
-import { ValueEquipmentSite } from './value_equipment_site.entity';
-import { ValueItemSite } from './value_item_site.entity';
+import { ValueEquipmentSite } from '../../database/entities/value_equipment_site.entity';
+import { ValueItemSite } from '../../database/entities/value_item_site.entity';
 import { Building } from '../../building/entities/building.entity';
 import { AttachedService } from '../../attached_service/entities/attached_service.entity';
 

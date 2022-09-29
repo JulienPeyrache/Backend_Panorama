@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Equipment } from '../../equipment/entities/equipment.entity';
-import { Site } from './site.entity';
+import { Site } from '../../site/entities/site.entity';
 
 @Entity()
 export class ValueEquipmentSite {

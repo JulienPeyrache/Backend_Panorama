@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryColumn, OneToMany } from 'typeorm';
 import { ValueEquipmentBuilding } from '../../database/entities/value_equipment_building.entity';
-import { Site } from '../../database/entities/site.entity';
+import { Site } from '../../site/entities/site.entity';
 
 export enum TypologyBuilding {
     MIXTE = 'Mixte',

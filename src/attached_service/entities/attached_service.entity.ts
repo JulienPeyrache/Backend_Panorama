@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Service } from '../../service/entities/service.entity';
 import { Item } from '../../item/entities/item.entity';
-import { Site } from '../../database/entities/site.entity';
+import { Site } from '../../site/entities/site.entity';
 
 @Entity()
 export class AttachedService {
