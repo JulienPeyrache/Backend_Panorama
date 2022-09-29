@@ -8,6 +8,7 @@ import { AttachedServiceModule } from './attached_service/attached_service.modul
 import { GlossaryModule } from './glossary/glossary.module';
 import { ItemModule } from './item/item.module';
 import { EquipmentModule } from './equipment/equipment.module';
+import { BuildingModule } from './building/building.module';
 import ormConfigOptions from './database/typeormoptions.config';
 
 @Module({
@@ -19,6 +20,7 @@ import ormConfigOptions from './database/typeormoptions.config';
         GlossaryModule,
         ItemModule,
         EquipmentModule,
+        BuildingModule,
     ],
     controllers: [AppController],
     providers: [AppService],

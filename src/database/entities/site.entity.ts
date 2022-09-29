@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { ValueEquipmentSite } from './value_equipment_site.entity';
 import { ValueItemSite } from './value_item_site.entity';
-import { Building } from './building.entity';
+import { Building } from '../../building/entities/building.entity';
 import { AttachedService } from '../../attached_service/entities/attached_service.entity';
 
 export enum TypologySite {
