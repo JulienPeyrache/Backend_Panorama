@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CourseModule } from './course/course.module';
 import { ServiceModule } from './service/service.module';
@@ -30,7 +28,5 @@ import ormConfigOptions from './database/typeormoptions.config';
         ValueEquipmentSiteModule,
         ValueEquipmentBuildingModule,
     ],
-    controllers: [AppController],
-    providers: [AppService],
 })
 export class AppModule {}
