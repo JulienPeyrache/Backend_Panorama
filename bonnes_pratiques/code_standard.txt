@@ -1,5 +1,6 @@
 Liste des standards de code de chaque document : 
 
+- on ne travaille pas sur le main directement (haha charles c de toi dont on parle
 - les variables ont un nom explicit 
 - les fonctions ont un nom explicit, et sont typées
 - un commentaire explique le rôle des fonctions peu évidentes
