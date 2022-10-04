@@ -39,6 +39,11 @@ export class ValueEquipmentBuildingController {
         return this.valueEquipmentBuildingService.findOne(+id);
     }
 
+    @Get('/findByBuildingId/:buildingId')
+    findWithIds(@Param('buildingId') buildingId: string) {
+        return this.valueEquipmentBuildingService.findByBuildingId(+buildingId);
+    }
+
     @Patch(':id')
     update(
         @Param('id') id: string,

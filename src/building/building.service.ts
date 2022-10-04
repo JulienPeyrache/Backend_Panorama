@@ -24,6 +24,10 @@ export class BuildingService {
         return this.buildingRepository.findOneBy({ id: id });
     }
 
+    async findByName(name: string): Promise<Building> {
+        return this.buildingRepository.findOneBy({ name_building: name });
+    }
+
     async update(
         id: number,
         updateBuildingDto: UpdateBuildingDto,

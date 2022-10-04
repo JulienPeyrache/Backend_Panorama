@@ -32,6 +32,11 @@ export class BuildingController {
         return this.buildingService.findOne(+id);
     }
 
+    @Get('findByName/:name')
+    findByName(@Param('name') name: string) {
+        return this.buildingService.findByName(name);
+    }
+
     @Patch(':id')
     update(
         @Param('id') id: string,

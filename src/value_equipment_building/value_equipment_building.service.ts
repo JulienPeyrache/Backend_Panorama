@@ -45,4 +45,15 @@ export class ValueEquipmentBuildingService {
             id,
         );
     }
+
+    async findByBuildingId(
+        buildingId: number,
+    ): Promise<ValueEquipmentBuilding[]> {
+        return this.valueEquipmentBuildingValueEquipmentBuildingRepository.find(
+            {
+                where: { buildingId: buildingId },
+                order: { equipmentId: 'ASC' },
+            },
+        );
+    }
 }
