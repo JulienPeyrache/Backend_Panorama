@@ -1,52 +1,52 @@
 import {
-    Controller,
-    Get,
-    Post,
-    Body,
-    Patch,
-    Param,
-    Delete,
-} from '@nestjs/common';
-import { BuildingService } from './building.service';
-import { CreateBuildingDto } from './dto/create-building.dto';
-import { UpdateBuildingDto } from './dto/update-building.dto';
-import { ApiTags } from '@nestjs/swagger';
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from "@nestjs/common";
+import { BuildingService } from "./building.service";
+import { CreateBuildingDto } from "./dto/create-building.dto";
+import { UpdateBuildingDto } from "./dto/update-building.dto";
+import { ApiTags } from "@nestjs/swagger";
 
-@ApiTags('building')
-@Controller('building')
+@ApiTags("building")
+@Controller("building")
 export class BuildingController {
-    constructor(private readonly buildingService: BuildingService) {}
+  constructor(private readonly buildingService: BuildingService) {}
 
-    @Post()
-    create(@Body() createBuildingDto: CreateBuildingDto) {
-        return this.buildingService.create(createBuildingDto);
-    }
+  @Post()
+  create(@Body() createBuildingDto: CreateBuildingDto) {
+    return this.buildingService.create(createBuildingDto);
+  }
 
-    @Get()
-    findAll() {
-        return this.buildingService.findAll();
-    }
+  @Get()
+  findAll() {
+    return this.buildingService.findAll();
+  }
 
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.buildingService.findOne(+id);
-    }
+  @Get(":id")
+  findOne(@Param("id") id: string) {
+    return this.buildingService.findOne(+id);
+  }
 
-    @Get('findByName/:name')
-    findByName(@Param('name') name: string) {
-        return this.buildingService.findByName(name);
-    }
+  @Get("findByName/:name")
+  findByName(@Param("name") name: string) {
+    return this.buildingService.findByName(name);
+  }
 
-    @Patch(':id')
-    update(
-        @Param('id') id: string,
-        @Body() updateBuildingDto: UpdateBuildingDto,
-    ) {
-        return this.buildingService.update(+id, updateBuildingDto);
-    }
+  @Patch(":id")
+  update(
+    @Param("id") id: string,
+    @Body() updateBuildingDto: UpdateBuildingDto
+  ) {
+    return this.buildingService.update(+id, updateBuildingDto);
+  }
 
-    @Delete(':id')
-    remove(@Param('id') id: string) {
-        return this.buildingService.remove(+id);
-    }
+  @Delete(":id")
+  remove(@Param("id") id: string) {
+    return this.buildingService.remove(+id);
+  }
 }

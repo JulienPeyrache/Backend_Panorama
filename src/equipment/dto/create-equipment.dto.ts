@@ -1,3 +1,3 @@
 export class CreateEquipmentDto {
-    label_equipment: string;
+  label_equipment: string;
 }

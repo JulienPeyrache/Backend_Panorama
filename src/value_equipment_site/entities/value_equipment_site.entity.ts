@@ -1,24 +1,24 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Equipment } from '../../equipment/entities/equipment.entity';
-import { Site } from '../../site/entities/site.entity';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Equipment } from "../../equipment/entities/equipment.entity";
+import { Site } from "../../site/entities/site.entity";
 
 @Entity()
 export class ValueEquipmentSite {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @Column()
-    siteId: number;
+  @Column()
+  siteId: number;
 
-    @Column()
-    equipmentId: number;
+  @Column()
+  equipmentId: number;
 
-    @ManyToOne(() => Site, (site) => site.valuesEquipmentSite)
-    site: Site;
+  @ManyToOne(() => Site, (site) => site.valuesEquipmentSite)
+  site: Site;
 
-    @ManyToOne(() => Equipment, (equipment) => equipment.valuesEquipmentSite)
-    equipment: Equipment;
+  @ManyToOne(() => Equipment, (equipment) => equipment.valuesEquipmentSite)
+  equipment: Equipment;
 }

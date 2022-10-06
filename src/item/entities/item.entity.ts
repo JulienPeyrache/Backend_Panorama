@@ -1,36 +1,33 @@
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    OneToMany,
-} from 'typeorm';
-import { AttachedService } from '../../attached_service/entities/attached_service.entity';
-import { ValueItemSite } from '../../value_item_site/entities/value_item_site.entity';
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from "typeorm";
+import { AttachedService } from "../../attached_service/entities/attached_service.entity";
+import { ValueItemSite } from "../../value_item_site/entities/value_item_site.entity";
 
 @Entity()
 export class Item {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    label_item: string;
+  @Column()
+  label_item: string;
 
-    @Column({ nullable: true })
-    default_value: string;
+  @Column({ nullable: true })
+  default_value: string;
 
-    @Column()
-    is_occupant_info: boolean;
+  @Column()
+  is_occupant_info: boolean;
 
-    @Column()
-    attachedServiceId: number;
+  @Column()
+  attachedServiceId: number;
 
-    @ManyToOne(
-        () => AttachedService,
-        (attachedService) => attachedService.items,
-    )
-    attachedService: AttachedService;
+  @ManyToOne(() => AttachedService, (attachedService) => attachedService.items)
+  attachedService: AttachedService;
 
-    @OneToMany(() => ValueItemSite, (valuesItemSite) => valuesItemSite.item)
-    valuesItemSite: ValueItemSite[];
+  @OneToMany(() => ValueItemSite, (valuesItemSite) => valuesItemSite.item)
+  valuesItemSite: ValueItemSite[];
 }
