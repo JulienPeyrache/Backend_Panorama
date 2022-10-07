@@ -7,51 +7,47 @@ import { ValueEquipmentBuilding } from "./entities/value_equipment_building.enti
 
 @Injectable()
 export class ValueEquipmentBuildingService {
-  constructor(
-    @InjectRepository(ValueEquipmentBuilding)
-    private readonly valueEquipmentBuildingValueEquipmentBuildingRepository: Repository<ValueEquipmentBuilding>
-  ) {}
+	constructor(
+		@InjectRepository(ValueEquipmentBuilding)
+		private readonly valueEquipmentBuildingRepository: Repository<ValueEquipmentBuilding>
+	) {}
 
-  async create(
-    createValueEquipmentBuildingDto: CreateValueEquipmentBuildingDto
-  ): Promise<ValueEquipmentBuilding> {
-    return this.valueEquipmentBuildingValueEquipmentBuildingRepository.save(
-      createValueEquipmentBuildingDto
-    );
-  }
+	async create(
+		createValueEquipmentBuildingDto: CreateValueEquipmentBuildingDto
+	): Promise<ValueEquipmentBuilding> {
+		return this.valueEquipmentBuildingRepository.save(
+			createValueEquipmentBuildingDto
+		);
+	}
 
-  async findAll(): Promise<ValueEquipmentBuilding[]> {
-    return this.valueEquipmentBuildingValueEquipmentBuildingRepository.find();
-  }
+	async findAll(): Promise<ValueEquipmentBuilding[]> {
+		return this.valueEquipmentBuildingRepository.find();
+	}
 
-  async findOne(id: number): Promise<ValueEquipmentBuilding> {
-    return this.valueEquipmentBuildingValueEquipmentBuildingRepository.findOneBy(
-      { id: id }
-    );
-  }
+	async findOne(id: number): Promise<ValueEquipmentBuilding> {
+		return this.valueEquipmentBuildingRepository.findOneBy({ id: id });
+	}
 
-  async update(
-    id: number,
-    updateValueEquipmentBuildingDto: UpdateValueEquipmentBuildingDto
-  ): Promise<UpdateResult> {
-    return this.valueEquipmentBuildingValueEquipmentBuildingRepository.update(
-      id,
-      updateValueEquipmentBuildingDto
-    );
-  }
+	async update(
+		id: number,
+		updateValueEquipmentBuildingDto: UpdateValueEquipmentBuildingDto
+	): Promise<UpdateResult> {
+		return this.valueEquipmentBuildingRepository.update(
+			id,
+			updateValueEquipmentBuildingDto
+		);
+	}
 
-  async remove(id: number): Promise<DeleteResult> {
-    return this.valueEquipmentBuildingValueEquipmentBuildingRepository.delete(
-      id
-    );
-  }
+	async remove(id: number): Promise<DeleteResult> {
+		return this.valueEquipmentBuildingRepository.delete(id);
+	}
 
-  async findByBuildingId(
-    buildingId: number
-  ): Promise<ValueEquipmentBuilding[]> {
-    return this.valueEquipmentBuildingValueEquipmentBuildingRepository.find({
-      where: { buildingId: buildingId },
-      order: { equipmentId: "ASC" },
-    });
-  }
+	async findByBuildingId(
+		buildingId: number
+	): Promise<ValueEquipmentBuilding[]> {
+		return this.valueEquipmentBuildingRepository.find({
+			where: { buildingId: buildingId },
+			order: { equipmentId: "ASC" },
+		});
+	}
 }
