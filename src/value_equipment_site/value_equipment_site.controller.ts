@@ -50,6 +50,16 @@ export class ValueEquipmentSiteController {
 		);
 	}
 
+	@Post("/updateAll")
+	updateAll(
+		@Body()
+		listValuesEquipmentSite: UpdateValueEquipmentSiteDto[]
+	) {
+		for (const value of listValuesEquipmentSite) {
+			this.valueEquipmentSiteService.update(+value.id, value);
+		}
+	}
+
 	@Delete(":id")
 	remove(@Param("id") id: string) {
 		return this.valueEquipmentSiteService.remove(+id);
