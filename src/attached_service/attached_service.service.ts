@@ -37,8 +37,8 @@ export class AttachedServiceService {
 	async findByServiceAndLabel(
 		serviceId: number,
 		label: string
-	): Promise<AttachedService[]> {
-		return this.attachedServiceRepository.find({
+	): Promise<AttachedService> {
+		return this.attachedServiceRepository.findOne({
 			where: {
 				serviceId: serviceId,
 				label_attached_service: label,
