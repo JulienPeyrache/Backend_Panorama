@@ -1,9 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DeleteResult, Repository, UpdateResult } from "typeorm";
+import { DeleteResult, Repository, UpdateResult, In } from "typeorm";
 import { CreateValueItemSiteDto } from "./dto/create-value_item_site.dto";
 import { UpdateValueItemSiteDto } from "./dto/update-value_item_site.dto";
 import { ValueItemSite } from "./entities/value_item_site.entity";
+import { Site } from "src/site/entities/site.entity";
 
 @Injectable()
 export class ValueItemSiteService {
@@ -42,4 +43,13 @@ export class ValueItemSiteService {
 	async remove(id: number): Promise<DeleteResult> {
 		return this.valueItemSiteRepository.delete(id);
 	}
+
+  async findByItemId(
+    itemId: number
+  ): Promise<ValueItemSite[]> {
+    return this.valueItemSiteRepository.find({
+      where: { itemId: itemId },
+      order: { id: "ASC" },
+    })
+  }
 }

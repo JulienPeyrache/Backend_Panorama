@@ -34,4 +34,11 @@ export class SiteService {
   async remove(id: number): Promise<DeleteResult> {
     return this.siteRepository.delete(id);
   }
+
+  async findByBuildingId(buildingId: number): Promise<Site[]> {
+    return this.siteRepository.find({
+      where: { buildingId: buildingId },
+      order: { id: "ASC" },
+    });
+  }
 }

@@ -34,4 +34,12 @@ export class ServiceService {
   async remove(id: number): Promise<DeleteResult> {
     return this.serviceRepository.delete(id);
   }
+
+  async findByCourseId(
+    courseId: number): Promise<Service[]>{
+      return this.serviceRepository.find({
+        where: { courseId: courseId },
+        order: { id: "ASC" },
+      });
+    }
 }

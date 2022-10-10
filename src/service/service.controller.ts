@@ -41,4 +41,9 @@ export class ServiceController {
   remove(@Param("id") id: string) {
     return this.serviceService.remove(+id);
   }
+
+  @Get("/findByCourseId/:courseId")
+  findWithIds(@Param("courseId") courseId: string) {
+    return this.serviceService.findByCourseId(+courseId);
+  }
 }
