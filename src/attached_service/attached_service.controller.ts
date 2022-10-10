@@ -34,6 +34,11 @@ export class AttachedServiceController {
 		return this.attachedServiceService.findOne(+id);
 	}
 
+	@Get("findByServiceId/:serviceId")
+	findByServiceId(@Param("serviceId") serviceId: string) {
+		return this.attachedServiceService.findByServiceId(+serviceId);
+	}
+
 	@Get("findByServiceAndLabel/:serviceId/:label")
 	findByServiceAndLabel(
 		@Param("serviceId") serviceId: string,
@@ -68,5 +73,21 @@ export class AttachedServiceController {
 	@Get(":id/isOnSite/:siteId")
 	isOnSite(@Param("id") id: string, @Param("siteId") siteId: string) {
 		return this.attachedServiceService.isOnSite(+id, +siteId);
+	}
+
+	@Post("areOnSite/:siteId")
+	async areOnSite(
+		@Param("siteId") siteId: string,
+		@Body() attachedServices: UpdateAttachedServiceDto[]
+	) {
+		let res: boolean[] = [];
+		for (const attachedService of attachedServices) {
+			const isOnSite = await this.attachedServiceService.isOnSite(
+				attachedService.id,
+				+siteId
+			);
+			isOnSite !== null ? res.push(true) : res.push(false);
+		}
+		return res;
 	}
 }

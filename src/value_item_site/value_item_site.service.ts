@@ -7,33 +7,39 @@ import { ValueItemSite } from "./entities/value_item_site.entity";
 
 @Injectable()
 export class ValueItemSiteService {
-  constructor(
-    @InjectRepository(ValueItemSite)
-    private readonly valueItemSiteRepository: Repository<ValueItemSite>
-  ) {}
+	constructor(
+		@InjectRepository(ValueItemSite)
+		private readonly valueItemSiteRepository: Repository<ValueItemSite>
+	) {}
 
-  async create(
-    createValueItemSiteDto: CreateValueItemSiteDto
-  ): Promise<ValueItemSite> {
-    return this.valueItemSiteRepository.save(createValueItemSiteDto);
-  }
+	async create(
+		createValueItemSiteDto: CreateValueItemSiteDto
+	): Promise<ValueItemSite> {
+		return this.valueItemSiteRepository.save(createValueItemSiteDto);
+	}
 
-  async findAll(): Promise<ValueItemSite[]> {
-    return this.valueItemSiteRepository.find();
-  }
+	async findAll(): Promise<ValueItemSite[]> {
+		return this.valueItemSiteRepository.find();
+	}
 
-  async findOne(id: number): Promise<ValueItemSite> {
-    return this.valueItemSiteRepository.findOneBy({ id: id });
-  }
+	async findOne(id: number): Promise<ValueItemSite> {
+		return this.valueItemSiteRepository.findOneBy({ id: id });
+	}
 
-  async update(
-    id: number,
-    updateValueItemSiteDto: UpdateValueItemSiteDto
-  ): Promise<UpdateResult> {
-    return this.valueItemSiteRepository.update(id, updateValueItemSiteDto);
-  }
+	async findBySiteId(siteId: number): Promise<ValueItemSite[]> {
+		return this.valueItemSiteRepository.find({
+			where: { siteId: siteId },
+		});
+	}
 
-  async remove(id: number): Promise<DeleteResult> {
-    return this.valueItemSiteRepository.delete(id);
-  }
+	async update(
+		id: number,
+		updateValueItemSiteDto: UpdateValueItemSiteDto
+	): Promise<UpdateResult> {
+		return this.valueItemSiteRepository.update(id, updateValueItemSiteDto);
+	}
+
+	async remove(id: number): Promise<DeleteResult> {
+		return this.valueItemSiteRepository.delete(id);
+	}
 }

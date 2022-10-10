@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Site } from "src/site/entities/site.entity";
-import { DeleteResult, Repository, UpdateResult } from "typeorm";
+import { DeleteResult, Not, Repository, UpdateResult } from "typeorm";
 import { CreateAttachedServiceDto } from "./dto/create-attached_service.dto";
 import { UpdateAttachedServiceDto } from "./dto/update-attached_service.dto";
 import { AttachedService } from "./entities/attached_service.entity";
@@ -31,6 +31,15 @@ export class AttachedServiceService {
 				id: id,
 			},
 			relations: ["sites"],
+		});
+	}
+
+	async findByServiceId(serviceId: number): Promise<AttachedService[]> {
+		return this.attachedServiceRepository.find({
+			where: {
+				serviceId: serviceId,
+				label_attached_service: Not("Commun"),
+			},
 		});
 	}
 
@@ -69,7 +78,7 @@ export class AttachedServiceService {
 				return site;
 			}
 		}
-		throw new NotFoundException();
+		return null;
 	}
 
 	async addToSite(

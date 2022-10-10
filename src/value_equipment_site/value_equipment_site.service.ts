@@ -43,7 +43,6 @@ export class ValueEquipmentSiteService {
 	async findBySiteId(siteId: number): Promise<ValueEquipmentSite[]> {
 		return this.valueEquipmentSiteRepository.find({
 			where: { siteId: siteId },
-			order: { equipmentId: "ASC" },
 		});
 	}
 }
