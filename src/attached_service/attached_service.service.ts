@@ -112,4 +112,14 @@ export class AttachedServiceService {
 		);
 		return this.attachedServiceRepository.save(attachedService);
 	}
+
+	async findByServiceIdUser(
+		serviceId: number
+	): Promise<AttachedService[]> {
+		return this.attachedServiceRepository.find({
+			where: { serviceId: serviceId },
+			order: { id: "ASC" }
+		});
+	}
+
 }

@@ -46,4 +46,9 @@ export class ItemController {
 	remove(@Param("id") id: string) {
 		return this.itemService.remove(+id);
 	}
+
+  @Get("/findByAttachedServiceId/:attachedServiceId")
+  findWithIds(@Param("attachedServiceId") attachedServiceId: string) {
+    return this.itemService.findByAttachedServiceId(+attachedServiceId);
+  }
 }

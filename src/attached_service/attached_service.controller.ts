@@ -74,7 +74,7 @@ export class AttachedServiceController {
 	isOnSite(@Param("id") id: string, @Param("siteId") siteId: string) {
 		return this.attachedServiceService.isOnSite(+id, +siteId);
 	}
-
+	
 	@Post("areOnSite/:siteId")
 	async areOnSite(
 		@Param("siteId") siteId: string,
@@ -88,6 +88,10 @@ export class AttachedServiceController {
 			);
 			isOnSite !== null ? res.push(true) : res.push(false);
 		}
-		return res;
+		return res; }
+
+	@Get("/findByServiceId/:serviceId")
+	findWithIds(@Param("serviceId") serviceId: string) {
+		return this.attachedServiceService.findByServiceId(+serviceId);
 	}
 }

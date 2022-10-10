@@ -24,12 +24,6 @@ export class ItemService {
 		return this.itemRepository.findOneBy({ id: id });
 	}
 
-	async findByAttachedServiceId(attachedServiceId: number): Promise<Item[]> {
-		return this.itemRepository.find({
-			where: { attachedServiceId: attachedServiceId },
-		});
-	}
-
 	async update(
 		id: number,
 		updateItemDto: UpdateItemDto
@@ -40,4 +34,11 @@ export class ItemService {
 	async remove(id: number): Promise<DeleteResult> {
 		return this.itemRepository.delete(id);
 	}
+
+  async findByAttachedServiceId(attachedServiceId: number) : Promise<Item[]> {
+    return this.itemRepository.find({
+      where: { attachedServiceId: attachedServiceId},
+      order: { id: "ASC" },
+    });
+  }
 }

@@ -60,4 +60,9 @@ export class SiteController {
 	remove(@Param("id") id: string) {
 		return this.siteService.remove(+id);
 	}
+
+	@Get("/findByBuildingId/:buildingId")
+	findWithIds(@Param("buildingId") buildingId: string) {
+		return this.siteService.findByBuildingId(+buildingId);
+	}
 }

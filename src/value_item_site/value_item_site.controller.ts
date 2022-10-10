@@ -12,6 +12,7 @@ import { CreateValueItemSiteDto } from "./dto/create-value_item_site.dto";
 import { UpdateValueItemSiteDto } from "./dto/update-value_item_site.dto";
 import { ApiTags } from "@nestjs/swagger";
 
+
 @ApiTags("value-item-site")
 @Controller("value-item-site")
 export class ValueItemSiteController {
@@ -33,7 +34,7 @@ export class ValueItemSiteController {
 	}
 
 	@Get("/findBySiteId/:siteId")
-	findWithIds(@Param("siteId") siteId: string) {
+	findWithIdsSite(@Param("siteId") siteId: string) {
 		return this.valueItemSiteService.findBySiteId(+siteId);
 	}
 
@@ -59,4 +60,10 @@ export class ValueItemSiteController {
 	remove(@Param("id") id: string) {
 		return this.valueItemSiteService.remove(+id);
 	}
+
+
+  @Get("/findByItemId/:itemId")
+   async findWithIds(@Param("itemId") itemId: string) {
+    return this.valueItemSiteService.findByItemId(+itemId);
+  }
 }
