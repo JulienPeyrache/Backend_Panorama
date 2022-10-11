@@ -6,7 +6,7 @@ import {
 	OneToMany,
 } from "typeorm";
 import { AttachedService } from "../../attached_service/entities/attached_service.entity";
-import { ValueItemBuilding } from "src/value_item_building/entities/value_item_building.entity";
+import { ValueItemBuilding } from "../../value_item_building/entities/value_item_building.entity";
 
 @Entity()
 export class Item {
