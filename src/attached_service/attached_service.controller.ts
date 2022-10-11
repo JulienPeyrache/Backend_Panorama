@@ -60,35 +60,42 @@ export class AttachedServiceController {
 		return this.attachedServiceService.remove(+id);
 	}
 
-	@Patch(":id/addToSite/:siteId")
-	addToSite(@Param("id") id: string, @Param("siteId") siteId: string) {
-		return this.attachedServiceService.addToSite(+id, +siteId);
+	@Patch(":id/addToBuilding/:buildingId")
+	addToBuilding(@Param("id") id: string, @Param("siteId") buildingId: string) {
+		return this.attachedServiceService.addToBuilding(+id, +buildingId);
 	}
 
-	@Patch(":id/removeFromSite/:siteId")
-	removeFromSite(@Param("id") id: string, @Param("siteId") siteId: string) {
-		return this.attachedServiceService.removeFromSite(+id, +siteId);
+	@Patch(":id/removeFromBuilding/:buildingId")
+	removeFromBuilding(
+		@Param("id") id: string,
+		@Param("buildingId") buildingId: string
+	) {
+		return this.attachedServiceService.removeFromBuilding(+id, +buildingId);
 	}
 
-	@Get(":id/isOnSite/:siteId")
-	isOnSite(@Param("id") id: string, @Param("siteId") siteId: string) {
-		return this.attachedServiceService.isOnSite(+id, +siteId);
+	@Get(":id/isOnBuilding/:buildingId")
+	isOnBuilding(
+		@Param("id") id: string,
+		@Param("buildingId") buildingId: string
+	) {
+		return this.attachedServiceService.isOnBuilding(+id, +buildingId);
 	}
-	
-	@Post("areOnSite/:siteId")
-	async areOnSite(
-		@Param("siteId") siteId: string,
+
+	@Post("areOnBuilding/:buildingId")
+	async areOnBuilding(
+		@Param("buildingId") buildingId: string,
 		@Body() attachedServices: UpdateAttachedServiceDto[]
 	) {
 		let res: boolean[] = [];
 		for (const attachedService of attachedServices) {
-			const isOnSite = await this.attachedServiceService.isOnSite(
+			const isOnBuilding = await this.attachedServiceService.isOnBuilding(
 				attachedService.id,
-				+siteId
+				+buildingId
 			);
-			isOnSite !== null ? res.push(true) : res.push(false);
+			isOnBuilding !== null ? res.push(true) : res.push(false);
 		}
-		return res; }
+		return res;
+	}
 
 	@Get("/findByServiceId/:serviceId")
 	findWithIds(@Param("serviceId") serviceId: string) {

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Site } from "src/site/entities/site.entity";
+import { Building } from "src/building/entities/building.entity";
 import { DeleteResult, Not, Repository, UpdateResult } from "typeorm";
 import { CreateAttachedServiceDto } from "./dto/create-attached_service.dto";
 import { UpdateAttachedServiceDto } from "./dto/update-attached_service.dto";
@@ -11,8 +11,8 @@ export class AttachedServiceService {
 	constructor(
 		@InjectRepository(AttachedService)
 		private readonly attachedServiceRepository: Repository<AttachedService>,
-		@InjectRepository(Site)
-		private readonly siteRepository: Repository<Site>
+		@InjectRepository(Building)
+		private readonly buildingRepository: Repository<Building>
 	) {}
 
 	async create(
@@ -22,7 +22,7 @@ export class AttachedServiceService {
 	}
 
 	async findAll(): Promise<AttachedService[]> {
-		return this.attachedServiceRepository.find({ relations: ["sites"] });
+		return this.attachedServiceRepository.find({ relations: ["buildings"] });
 	}
 
 	async findOne(id: number): Promise<AttachedService> {
@@ -30,7 +30,7 @@ export class AttachedServiceService {
 			where: {
 				id: id,
 			},
-			relations: ["sites"],
+			relations: ["buildings"],
 		});
 	}
 
@@ -66,60 +66,62 @@ export class AttachedServiceService {
 		return this.attachedServiceRepository.delete(id);
 	}
 
-	async isOnSite(attachedServiceId: number, siteId: number): Promise<Site> {
+	async isOnBuilding(
+		attachedServiceId: number,
+		buildingId: number
+	): Promise<Building> {
 		const attachedService = await this.attachedServiceRepository.findOne({
 			where: {
 				id: attachedServiceId,
 			},
-			relations: ["sites"],
+			relations: ["buildings"],
 		});
-		for (const site of attachedService.sites) {
-			if (site.id === siteId) {
-				return site;
+		for (const building of attachedService.buildings) {
+			if (building.id === buildingId) {
+				return building;
 			}
 		}
 		return null;
 	}
 
-	async addToSite(
+	async addToBuilding(
 		attachedServiceId: number,
-		siteId: number
+		buildingId: number
 	): Promise<AttachedService> {
 		const attachedService = await this.attachedServiceRepository.findOneBy({
 			id: attachedServiceId,
 		});
-		const site = await this.siteRepository.findOneBy({ id: siteId });
-		if (attachedService.sites === undefined) {
-			attachedService.sites = [site];
+		const building = await this.buildingRepository.findOneBy({
+			id: buildingId,
+		});
+		if (attachedService.buildings === undefined) {
+			attachedService.buildings = [building];
 		} else {
-			attachedService.sites.push(site);
+			attachedService.buildings.push(building);
 		}
 		return this.attachedServiceRepository.save(attachedService);
 	}
 
-	async removeFromSite(
+	async removeFromBuilding(
 		attachedServiceId: number,
-		siteId: number
+		buildingId: number
 	): Promise<AttachedService> {
 		const attachedService = await this.attachedServiceRepository.findOne({
 			where: {
 				id: attachedServiceId,
 			},
-			relations: ["sites"],
+			relations: ["buildings"],
 		});
-		attachedService.sites = attachedService.sites.filter(
-			(site) => site.id !== siteId
+		attachedService.buildings = attachedService.buildings.filter(
+			(building) => building.id !== buildingId
 		);
 		return this.attachedServiceRepository.save(attachedService);
 	}
 
-	async findByServiceIdUser(
-		serviceId: number
-	): Promise<AttachedService[]> {
+	async findByServiceIdUser(serviceId: number): Promise<AttachedService[]> {
 		return this.attachedServiceRepository.find({
 			where: { serviceId: serviceId },
-			order: { id: "ASC" }
+			order: { id: "ASC" },
 		});
 	}
-
 }
