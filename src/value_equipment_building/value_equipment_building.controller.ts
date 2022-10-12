@@ -74,4 +74,14 @@ export class ValueEquipmentBuildingController {
 	remove(@Param("id") id: string) {
 		return this.valueEquipmentBuildingService.remove(+id);
 	}
+
+	@Post("/deleteAll")
+	removeAll(
+		@Body()
+		listValuesEquipmentBuilding: UpdateValueEquipmentBuildingDto[]
+	) {
+		for (const value of listValuesEquipmentBuilding) {
+			this.valueEquipmentBuildingService.remove(+value.id);
+		}
+	}
 }
