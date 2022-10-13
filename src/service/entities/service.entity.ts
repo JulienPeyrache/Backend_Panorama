@@ -13,21 +13,22 @@ export class Service {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column()
+	@Column({ unique: true })
 	code_service: string;
 
-	@Column()
+	@Column({ unique: true })
 	label_service: string;
 
 	@Column()
 	courseId: number;
 
-	@ManyToOne(() => Course, (course) => course.services)
+	@ManyToOne(() => Course, (course) => course.services, { onDelete: "CASCADE" })
 	course: Course;
 
 	@OneToMany(
 		() => AttachedService,
-		(attachedService) => attachedService.service
+		(attachedService) => attachedService.service,
+		{ cascade: true }
 	)
 	attachedServices: AttachedService[];
 }

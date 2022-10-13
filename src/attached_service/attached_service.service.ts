@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Building } from "src/building/entities/building.entity";
+import { Building } from "../building/entities/building.entity";
 import { DeleteResult, Not, Repository, UpdateResult } from "typeorm";
 import { CreateAttachedServiceDto } from "./dto/create-attached_service.dto";
 import { UpdateAttachedServiceDto } from "./dto/update-attached_service.dto";
@@ -22,7 +22,9 @@ export class AttachedServiceService {
 	}
 
 	async findAll(): Promise<AttachedService[]> {
-		return this.attachedServiceRepository.find({ relations: ["buildings"] });
+		return this.attachedServiceRepository.find({
+			relations: ["service", "buildings"],
+		});
 	}
 
 	async findOne(id: number): Promise<AttachedService> {
@@ -76,28 +78,35 @@ export class AttachedServiceService {
 			},
 			relations: ["buildings"],
 		});
+		if (attachedService === null) {
+			throw new NotFoundException("Attached service not found");
+		}
 		for (const building of attachedService.buildings) {
 			if (building.id === buildingId) {
 				return building;
 			}
 		}
-		return null;
 	}
 
 	async addToBuilding(
 		attachedServiceId: number,
 		buildingId: number
 	): Promise<AttachedService> {
-		const attachedService = await this.attachedServiceRepository.findOneBy({
-			id: attachedServiceId,
+		const attachedService = await this.attachedServiceRepository.findOne({
+			where: {
+				id: attachedServiceId,
+			},
+			relations: ["buildings"],
 		});
-		const building = await this.buildingRepository.findOneBy({
-			id: buildingId,
+		const building = await this.buildingRepository.findOne({
+			where: {
+				id: buildingId,
+			},
 		});
 		if (attachedService.buildings === undefined) {
 			attachedService.buildings = [building];
 		} else {
-			attachedService.buildings.push(building);
+			await attachedService.buildings.push(building);
 		}
 		return this.attachedServiceRepository.save(attachedService);
 	}
@@ -116,6 +125,16 @@ export class AttachedServiceService {
 			(building) => building.id !== buildingId
 		);
 		return this.attachedServiceRepository.save(attachedService);
+	}
+
+	async findWithBuildingId(buildingId: number): Promise<AttachedService[]> {
+		let attachedServices = await this.attachedServiceRepository.find({
+			relations: ["buildings"],
+		});
+		attachedServices = attachedServices.filter((attachedServ) =>
+			attachedServ.buildings.some((building) => building.id === buildingId)
+		);
+		return attachedServices;
 	}
 
 	async findByServiceIdUser(serviceId: number): Promise<AttachedService[]> {

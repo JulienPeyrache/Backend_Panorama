@@ -13,11 +13,8 @@ export class Item {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column()
+	@Column({ unique: true })
 	label_item: string;
-
-	@Column({ nullable: true })
-	default_value: string;
 
 	@Column()
 	is_occupant_info: boolean;
@@ -25,12 +22,17 @@ export class Item {
 	@Column()
 	attachedServiceId: number;
 
-	@ManyToOne(() => AttachedService, (attachedService) => attachedService.items)
+	@ManyToOne(
+		() => AttachedService,
+		(attachedService) => attachedService.items,
+		{ onDelete: "CASCADE" }
+	)
 	attachedService: AttachedService;
 
 	@OneToMany(
 		() => ValueItemBuilding,
-		(valuesItemBuilding) => valuesItemBuilding.item
+		(valuesItemBuilding) => valuesItemBuilding.item,
+		{ cascade: true }
 	)
 	valuesItemBuilding: ValueItemBuilding[];
 }
