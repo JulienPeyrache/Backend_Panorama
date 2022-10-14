@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class InitDB1665697878813 implements MigrationInterface {
-    name = 'InitDB1665697878813'
+export class InitDB1665743281867 implements MigrationInterface {
+    name = 'InitDB1665743281867'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE \`course\` (\`id\` int NOT NULL AUTO_INCREMENT, \`code_course\` varchar(255) NOT NULL, \`label_course\` varchar(255) NOT NULL, \`description\` varchar(255) NOT NULL, UNIQUE INDEX \`IDX_998ac7bf0bf96929019ad6a85c\` (\`code_course\`), UNIQUE INDEX \`IDX_beec4a00aae5aa6b067f962931\` (\`label_course\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
@@ -11,7 +11,7 @@ export class InitDB1665697878813 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE \`building\` (\`id\` int NOT NULL, \`name_building\` varchar(255) NOT NULL, \`address\` varchar(255) NOT NULL, \`postal_code\` int NOT NULL, \`city\` varchar(255) NOT NULL, \`typology_building\` enum ('Mixte', 'PAP', 'Technique', 'Tertiaire') NOT NULL, \`is_courrier\` tinyint NOT NULL, UNIQUE INDEX \`IDX_84eeeead63bfc84341d9f75832\` (\`name_building\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`value_item_building\` (\`id\` int NOT NULL AUTO_INCREMENT, \`description\` varchar(255) NOT NULL, \`buildingId\` int NOT NULL, \`itemId\` int NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`item\` (\`id\` int NOT NULL AUTO_INCREMENT, \`label_item\` varchar(255) NOT NULL, \`is_occupant_info\` tinyint NOT NULL, \`attachedServiceId\` int NOT NULL, UNIQUE INDEX \`IDX_4102efa7bd9cd1f890d1e7f54e\` (\`label_item\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`attached_service\` (\`id\` int NOT NULL AUTO_INCREMENT, \`label_attached_service\` varchar(255) NOT NULL, \`serviceId\` int NOT NULL, UNIQUE INDEX \`IDX_c50873504393af87aa4f4ee2c2\` (\`label_attached_service\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`attached_service\` (\`id\` int NOT NULL AUTO_INCREMENT, \`label_attached_service\` varchar(255) NOT NULL, \`serviceId\` int NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`attached_services_buildings\` (\`attachedServiceId\` int NOT NULL, \`buildingId\` int NOT NULL, INDEX \`IDX_37323e02d6612c026f79ebe15f\` (\`attachedServiceId\`), INDEX \`IDX_0fd2a8fbee68907d6758b9770b\` (\`buildingId\`), PRIMARY KEY (\`attachedServiceId\`, \`buildingId\`)) ENGINE=InnoDB`);
         await queryRunner.query(`ALTER TABLE \`service\` ADD CONSTRAINT \`FK_bd43729518f25a1f1a08be5d966\` FOREIGN KEY (\`courseId\`) REFERENCES \`course\`(\`id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`value_equipment_building\` ADD CONSTRAINT \`FK_8e4734ff66a71a59a41a366b968\` FOREIGN KEY (\`buildingId\`) REFERENCES \`building\`(\`id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
@@ -37,7 +37,6 @@ export class InitDB1665697878813 implements MigrationInterface {
         await queryRunner.query(`DROP INDEX \`IDX_0fd2a8fbee68907d6758b9770b\` ON \`attached_services_buildings\``);
         await queryRunner.query(`DROP INDEX \`IDX_37323e02d6612c026f79ebe15f\` ON \`attached_services_buildings\``);
         await queryRunner.query(`DROP TABLE \`attached_services_buildings\``);
-        await queryRunner.query(`DROP INDEX \`IDX_c50873504393af87aa4f4ee2c2\` ON \`attached_service\``);
         await queryRunner.query(`DROP TABLE \`attached_service\``);
         await queryRunner.query(`DROP INDEX \`IDX_4102efa7bd9cd1f890d1e7f54e\` ON \`item\``);
         await queryRunner.query(`DROP TABLE \`item\``);
