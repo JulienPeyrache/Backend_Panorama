@@ -16,7 +16,7 @@ export class AttachedService {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ unique: true })
+	@Column()
 	label_attached_service: string;
 
 	@Column()
