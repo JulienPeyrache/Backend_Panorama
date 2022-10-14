@@ -41,8 +41,16 @@ export class ItemController {
 		return this.itemService.findByAttachedServiceId(+id);
 	}
 
-	@Get("findByServiceId/:id")
-	async findByListAttachedServiceIds(@Param("id") id: string) {
+	@Get("findCommonByServiceId/:id")
+	async findCommonByServiceId(@Param("id") id: string) {
+		let items = [];
+		const attachedServiceCommon =
+			await this.attachedServiceService.findByServiceAndLabel(+id, "Commun");
+		return this.itemService.findByAttachedServiceId(attachedServiceCommon.id);
+	}
+
+	@Get("findSpecificByServiceId/:id")
+	async findSpecificByServiceId(@Param("id") id: string) {
 		let items = [];
 		const attachedServices = await this.attachedServiceService.findByServiceId(
 			+id

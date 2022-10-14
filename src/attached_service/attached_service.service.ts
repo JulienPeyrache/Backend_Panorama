@@ -86,6 +86,7 @@ export class AttachedServiceService {
 				return building;
 			}
 		}
+		throw new Error("Building does not have this attached service");
 	}
 
 	async addToBuilding(

@@ -64,6 +64,16 @@ export class ValueItemBuildingController {
 		}
 	}
 
+	@Post("/deleteAll")
+	removeAll(
+		@Body()
+		listValuesItemBuilding: UpdateValueItemBuildingDto[]
+	) {
+		for (const value of listValuesItemBuilding) {
+			this.valueItemBuildingService.remove(+value.id);
+		}
+	}
+
 	@Delete(":id")
 	remove(@Param("id") id: string) {
 		return this.valueItemBuildingService.remove(+id);

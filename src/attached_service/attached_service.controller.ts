@@ -37,6 +37,32 @@ export class AttachedServiceController {
 		return this.attachedServiceService.addToBuilding(+id, +buildingId);
 	}
 
+	@Post("addAllToBuilding/:buildingId")
+	addAllToBuilding(
+		@Param("buildingId") buildingId: string,
+		@Body() attachedServices: UpdateAttachedServiceDto[]
+	) {
+		for (const attachedService of attachedServices) {
+			this.attachedServiceService.addToBuilding(
+				+attachedService.id,
+				+buildingId
+			);
+		}
+	}
+
+	@Post("deleteAllFromBuilding/:buildingId")
+	deleteAllFromBuilding(
+		@Param("buildingId") buildingId: string,
+		@Body() attachedServices: UpdateAttachedServiceDto[]
+	) {
+		for (const attachedService of attachedServices) {
+			this.attachedServiceService.removeFromBuilding(
+				+attachedService.id,
+				+buildingId
+			);
+		}
+	}
+
 	@Patch(":id/removeFromBuilding/:buildingId")
 	removeFromBuilding(
 		@Param("id") id: string,
@@ -72,11 +98,16 @@ export class AttachedServiceController {
 	) {
 		let res: boolean[] = [];
 		for (const attachedService of attachedServices) {
-			const isOnBuilding: any = await this.attachedServiceService.isOnBuilding(
-				attachedService.id,
-				+buildingId
-			);
-			isOnBuilding.error !== undefined ? res.push(true) : res.push(false);
+			try {
+				const isOnBuilding: any =
+					await this.attachedServiceService.isOnBuilding(
+						attachedService.id,
+						+buildingId
+					);
+				res.push(true);
+			} catch (err) {
+				res.push(false);
+			}
 		}
 		return res;
 	}
