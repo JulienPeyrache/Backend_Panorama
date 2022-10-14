@@ -9,5 +9,6 @@ import { Building } from "../building/entities/building.entity";
 	imports: [TypeOrmModule.forFeature([AttachedService, Building])],
 	controllers: [AttachedServiceController],
 	providers: [AttachedServiceService],
+	exports: [AttachedServiceService],
 })
 export class AttachedServiceModule {}

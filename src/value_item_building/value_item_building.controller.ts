@@ -53,10 +53,14 @@ export class ValueItemBuildingController {
 	@Post("/updateAll")
 	updateAll(
 		@Body()
-		listValuesItemBuilding: UpdateValueItemBuildingDto[]
+		listValuesItemBuilding: any[]
 	) {
 		for (const value of listValuesItemBuilding) {
-			this.valueItemBuildingService.update(+value.id, value);
+			if (value.id) {
+				this.valueItemBuildingService.update(+value.id, value);
+			} else {
+				this.valueItemBuildingService.create(value);
+			}
 		}
 	}
 
