@@ -3,11 +3,12 @@ import { AttachedServiceService } from "./attached_service.service";
 import { AttachedServiceController } from "./attached_service.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AttachedService } from "./entities/attached_service.entity";
-import { Building } from "src/building/entities/building.entity";
+import { Building } from "../building/entities/building.entity";
 
 @Module({
 	imports: [TypeOrmModule.forFeature([AttachedService, Building])],
 	controllers: [AttachedServiceController],
 	providers: [AttachedServiceService],
+	exports: [AttachedServiceService],
 })
 export class AttachedServiceModule {}

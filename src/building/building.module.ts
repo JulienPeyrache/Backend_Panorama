@@ -8,6 +8,5 @@ import { Building } from "./entities/building.entity";
 	imports: [TypeOrmModule.forFeature([Building])],
 	controllers: [BuildingController],
 	providers: [BuildingService],
-	exports: [BuildingService],
 })
 export class BuildingModule {}

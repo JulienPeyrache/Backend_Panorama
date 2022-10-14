@@ -17,7 +17,7 @@ export class ItemService {
 	}
 
 	async findAll(): Promise<Item[]> {
-		return this.itemRepository.find();
+		return this.itemRepository.find({ relations: ["attachedService"] });
 	}
 
 	async findOne(id: number): Promise<Item> {
@@ -35,10 +35,10 @@ export class ItemService {
 		return this.itemRepository.delete(id);
 	}
 
-  async findByAttachedServiceId(attachedServiceId: number) : Promise<Item[]> {
-    return this.itemRepository.find({
-      where: { attachedServiceId: attachedServiceId},
-      order: { id: "ASC" },
-    });
-  }
+	async findByAttachedServiceId(attachedServiceId: number): Promise<Item[]> {
+		return this.itemRepository.find({
+			where: { attachedServiceId: attachedServiceId },
+			order: { id: "ASC" },
+		});
+	}
 }

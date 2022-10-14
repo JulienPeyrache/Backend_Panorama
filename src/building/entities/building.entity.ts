@@ -1,11 +1,4 @@
-import {
-	Column,
-	Entity,
-	PrimaryColumn,
-	OneToMany,
-	ManyToMany,
-	JoinTable,
-} from "typeorm";
+import { Column, Entity, PrimaryColumn, OneToMany, ManyToMany } from "typeorm";
 import { ValueEquipmentBuilding } from "../../value_equipment_building/entities/value_equipment_building.entity";
 import { ValueItemBuilding } from "../../value_item_building/entities/value_item_building.entity";
 import { AttachedService } from "../../attached_service/entities/attached_service.entity";
@@ -22,7 +15,7 @@ export class Building {
 	@PrimaryColumn()
 	id: number;
 
-	@Column()
+	@Column({ unique: true })
 	name_building: string;
 
 	@Column()
@@ -42,13 +35,15 @@ export class Building {
 
 	@OneToMany(
 		() => ValueEquipmentBuilding,
-		(valuesEquipmentBuilding) => valuesEquipmentBuilding.building
+		(valuesEquipmentBuilding) => valuesEquipmentBuilding.building,
+		{ cascade: true }
 	)
 	valuesEquipmentBuilding: ValueEquipmentBuilding[];
 
 	@OneToMany(
 		() => ValueItemBuilding,
-		(valuesItemBuilding) => valuesItemBuilding.building
+		(valuesItemBuilding) => valuesItemBuilding.building,
+		{ cascade: true }
 	)
 	valuesItemBuilding: ValueItemBuilding[];
 
@@ -56,6 +51,5 @@ export class Building {
 		() => AttachedService,
 		(attachedServices) => attachedServices.buildings
 	)
-	@JoinTable()
 	attachedServices: AttachedService[];
 }

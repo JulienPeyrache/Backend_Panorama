@@ -16,9 +16,13 @@ export class ValueItemBuilding {
 	@Column()
 	itemId: number;
 
-	@ManyToOne(() => Building, (building) => building.valuesItemBuilding)
+	@ManyToOne(() => Building, (building) => building.valuesItemBuilding, {
+		onDelete: "CASCADE",
+	})
 	building: Building;
 
-	@ManyToOne(() => Item, (item) => item.valuesItemBuilding)
+	@ManyToOne(() => Item, (item) => item.valuesItemBuilding, {
+		onDelete: "CASCADE",
+	})
 	item: Item;
 }

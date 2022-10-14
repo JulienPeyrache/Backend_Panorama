@@ -4,21 +4,27 @@ import { Building } from "../../building/entities/building.entity";
 
 @Entity()
 export class ValueEquipmentBuilding {
-  @PrimaryGeneratedColumn()
-  id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-  @Column()
-  description: string;
+	@Column()
+	description: string;
 
-  @Column()
-  buildingId: number;
+	@Column()
+	buildingId: number;
 
-  @Column()
-  equipmentId: number;
+	@Column()
+	equipmentId: number;
 
-  @ManyToOne(() => Building, (building) => building.valuesEquipmentBuilding)
-  building: Building;
+	@ManyToOne(() => Building, (building) => building.valuesEquipmentBuilding, {
+		onDelete: "CASCADE",
+	})
+	building: Building;
 
-  @ManyToOne(() => Equipment, (equipment) => equipment.valuesEquipmentBuilding)
-  equipment: Equipment;
+	@ManyToOne(
+		() => Equipment,
+		(equipment) => equipment.valuesEquipmentBuilding,
+		{ onDelete: "CASCADE" }
+	)
+	equipment: Equipment;
 }

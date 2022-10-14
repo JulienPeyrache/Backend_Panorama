@@ -53,10 +53,24 @@ export class ValueItemBuildingController {
 	@Post("/updateAll")
 	updateAll(
 		@Body()
+		listValuesItemBuilding: any[]
+	) {
+		for (const value of listValuesItemBuilding) {
+			if (value.id) {
+				this.valueItemBuildingService.update(+value.id, value);
+			} else {
+				this.valueItemBuildingService.create(value);
+			}
+		}
+	}
+
+	@Post("/deleteAll")
+	removeAll(
+		@Body()
 		listValuesItemBuilding: UpdateValueItemBuildingDto[]
 	) {
 		for (const value of listValuesItemBuilding) {
-			this.valueItemBuildingService.update(+value.id, value);
+			this.valueItemBuildingService.remove(+value.id);
 		}
 	}
 

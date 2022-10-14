@@ -1,6 +1,7 @@
 import {
 	Column,
 	Entity,
+	JoinTable,
 	ManyToMany,
 	ManyToOne,
 	OneToMany,
@@ -21,12 +22,15 @@ export class AttachedService {
 	@Column()
 	serviceId: number;
 
-	@ManyToOne(() => Service, (service) => service.attachedServices)
+	@ManyToOne(() => Service, (service) => service.attachedServices, {
+		onDelete: "CASCADE",
+	})
 	service: Service;
 
-	@OneToMany(() => Item, (item) => item.attachedService)
+	@OneToMany(() => Item, (item) => item.attachedService, { cascade: true })
 	items: Item[];
 
 	@ManyToMany(() => Building, (buildings) => buildings.attachedServices)
+	@JoinTable({ name: "attached_services_buildings" })
 	buildings: Building[];
 }

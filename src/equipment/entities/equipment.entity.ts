@@ -6,12 +6,13 @@ export class Equipment {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column()
+	@Column({ unique: true })
 	label_equipment: string;
 
 	@OneToMany(
 		() => ValueEquipmentBuilding,
-		(valuesEquipmentBuilding) => valuesEquipmentBuilding.equipment
+		(valuesEquipmentBuilding) => valuesEquipmentBuilding.equipment,
+		{ cascade: true }
 	)
 	valuesEquipmentBuilding: ValueEquipmentBuilding[];
 }

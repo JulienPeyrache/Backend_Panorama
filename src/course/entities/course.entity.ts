@@ -3,18 +3,18 @@ import { Service } from "../../service/entities/service.entity";
 
 @Entity()
 export class Course {
-  @PrimaryGeneratedColumn()
-  id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-  @Column()
-  code_course: string;
+	@Column({ unique: true })
+	code_course: string;
 
-  @Column()
-  label_course: string;
+	@Column({ unique: true })
+	label_course: string;
 
-  @Column()
-  description: string;
+	@Column()
+	description: string;
 
-  @OneToMany(() => Service, (service) => service.course)
-  services: Service[];
+	@OneToMany(() => Service, (service) => service.course, { cascade: true })
+	services: Service[];
 }
