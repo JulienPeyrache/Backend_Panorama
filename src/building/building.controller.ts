@@ -1,11 +1,11 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
+	Controller,
+	Get,
+	Post,
+	Body,
+	Patch,
+	Param,
+	Delete,
 } from "@nestjs/common";
 import { BuildingService } from "./building.service";
 import { CreateBuildingDto } from "./dto/create-building.dto";
@@ -15,38 +15,43 @@ import { ApiTags } from "@nestjs/swagger";
 @ApiTags("building")
 @Controller("building")
 export class BuildingController {
-  constructor(private readonly buildingService: BuildingService) {}
+	constructor(private readonly buildingService: BuildingService) {}
 
-  @Post()
-  create(@Body() createBuildingDto: CreateBuildingDto) {
-    return this.buildingService.create(createBuildingDto);
-  }
+	@Post()
+	create(@Body() createBuildingDto: CreateBuildingDto) {
+		return this.buildingService.create(createBuildingDto);
+	}
 
-  @Get()
-  findAll() {
-    return this.buildingService.findAll();
-  }
+	@Get()
+	findAll() {
+		return this.buildingService.findAll();
+	}
 
-  @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.buildingService.findOne(+id);
-  }
+	@Get("/sortedByName")
+	findAllSortedByName() {
+		return this.buildingService.findAllSortedByName();
+	}
 
-  @Get("findByName/:name")
-  findByName(@Param("name") name: string) {
-    return this.buildingService.findByName(name);
-  }
+	@Get(":id")
+	findOne(@Param("id") id: string) {
+		return this.buildingService.findOne(+id);
+	}
 
-  @Patch(":id")
-  update(
-    @Param("id") id: string,
-    @Body() updateBuildingDto: UpdateBuildingDto
-  ) {
-    return this.buildingService.update(+id, updateBuildingDto);
-  }
+	@Get("findByName/:name")
+	findByName(@Param("name") name: string) {
+		return this.buildingService.findByName(name);
+	}
 
-  @Delete(":id")
-  remove(@Param("id") id: string) {
-    return this.buildingService.remove(+id);
-  }
+	@Patch(":id")
+	update(
+		@Param("id") id: string,
+		@Body() updateBuildingDto: UpdateBuildingDto
+	) {
+		return this.buildingService.update(+id, updateBuildingDto);
+	}
+
+	@Delete(":id")
+	remove(@Param("id") id: string) {
+		return this.buildingService.remove(+id);
+	}
 }
