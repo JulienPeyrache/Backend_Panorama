@@ -1,3 +1,4 @@
+import { Step } from "../../database/enum";
 import {
 	Entity,
 	PrimaryGeneratedColumn,
@@ -16,8 +17,14 @@ export class Item {
 	@Column({ unique: true })
 	label_item: string;
 
+	@Column({ unique: true, nullable: true })
+	label_userfriendly: string;
+
 	@Column()
 	is_occupant_info: boolean;
+
+	@Column({ type: "enum", enum: Step, nullable: true })
+	step: Step;
 
 	@Column()
 	attachedServiceId: number;

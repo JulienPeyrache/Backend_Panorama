@@ -1,3 +1,4 @@
+import { Step } from "../../database/enum";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ValueEquipmentBuilding } from "../../value_equipment_building/entities/value_equipment_building.entity";
 
@@ -8,6 +9,9 @@ export class Equipment {
 
 	@Column({ unique: true })
 	label_equipment: string;
+
+	@Column({ type: "enum", enum: Step, nullable: true })
+	step: Step;
 
 	@OneToMany(
 		() => ValueEquipmentBuilding,

@@ -8,6 +8,7 @@ import { EquipmentModule } from "./equipment/equipment.module";
 import { BuildingModule } from "./building/building.module";
 import { ValueEquipmentBuildingModule } from "./value_equipment_building/value_equipment_building.module";
 import { ValueItemBuildingModule } from "./value_item_building/value_item_building.module";
+import { RedirectionModule } from './redirection/redirection.module';
 import ormConfigOptions from "./database/typeormoptions.config";
 
 @Module({
@@ -21,6 +22,7 @@ import ormConfigOptions from "./database/typeormoptions.config";
 		BuildingModule,
 		ValueEquipmentBuildingModule,
 		ValueItemBuildingModule,
+		RedirectionModule,
 	],
 })
 export class AppModule {}

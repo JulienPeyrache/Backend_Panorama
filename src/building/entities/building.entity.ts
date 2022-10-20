@@ -2,13 +2,7 @@ import { Column, Entity, PrimaryColumn, OneToMany, ManyToMany } from "typeorm";
 import { ValueEquipmentBuilding } from "../../value_equipment_building/entities/value_equipment_building.entity";
 import { ValueItemBuilding } from "../../value_item_building/entities/value_item_building.entity";
 import { AttachedService } from "../../attached_service/entities/attached_service.entity";
-
-export enum TypologyBuilding {
-	MIXTE = "Mixte",
-	PAP = "PAP",
-	TECHNIQUE = "Technique",
-	TERTIAIRE = "Tertiaire",
-}
+import { TypologyBuilding } from "../../database/enum";
 
 @Entity()
 export class Building {
