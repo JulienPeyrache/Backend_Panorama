@@ -12,13 +12,16 @@ import { AttachedServiceService } from "../attached_service/attached_service.ser
 import { CreateItemDto } from "./dto/create-item.dto";
 import { UpdateItemDto } from "./dto/update-item.dto";
 import { ApiTags } from "@nestjs/swagger";
+import { Step } from "../database/enum";
+import { ValueItemBuildingService } from "../value_item_building/value_item_building.service";
 
 @ApiTags("item")
 @Controller("item")
 export class ItemController {
 	constructor(
 		private readonly itemService: ItemService,
-		private readonly attachedServiceService: AttachedServiceService
+		private readonly attachedServiceService: AttachedServiceService,
+		private readonly valueItemBuildingService: ValueItemBuildingService
 	) {}
 
 	@Post()
@@ -34,6 +37,25 @@ export class ItemController {
 	@Get(":id")
 	findOne(@Param("id") id: string) {
 		return this.itemService.findOne(+id);
+	}
+
+	@Get("findByStep/:step/inBuilding/:buildingId")
+	async findByStepInBuilding(
+		@Param("step") step: Step,
+		@Param("buildingId") buildingId: string
+	) {
+		let availableItems = [];
+		const items = await this.itemService.findByStep(step);
+		for (const item of items) {
+			const value = await this.valueItemBuildingService.findByItemAndBuildingId(
+				item.id,
+				+buildingId
+			);
+			if (value) {
+				availableItems.push({ ...item, description: value.description });
+			}
+		}
+		return availableItems;
 	}
 
 	@Get("findByAttachedServiceId/:id")

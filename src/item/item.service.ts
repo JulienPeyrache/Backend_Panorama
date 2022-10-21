@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { Step } from "../database/enum";
 import { DeleteResult, Repository, UpdateResult } from "typeorm";
 import { CreateItemDto } from "./dto/create-item.dto";
 import { UpdateItemDto } from "./dto/update-item.dto";
@@ -38,6 +39,13 @@ export class ItemService {
 	async findByAttachedServiceId(attachedServiceId: number): Promise<Item[]> {
 		return this.itemRepository.find({
 			where: { attachedServiceId: attachedServiceId },
+			order: { id: "ASC" },
+		});
+	}
+
+	async findByStep(step: Step): Promise<Item[]> {
+		return this.itemRepository.find({
+			where: { step: step, is_occupant_info: true },
 			order: { id: "ASC" },
 		});
 	}

@@ -78,9 +78,4 @@ export class ValueItemBuildingController {
 	remove(@Param("id") id: string) {
 		return this.valueItemBuildingService.remove(+id);
 	}
-
-	@Get("/findByItemId/:itemId")
-	async findWithIds(@Param("itemId") itemId: string) {
-		return this.valueItemBuildingService.findByItemId(+itemId);
-	}
 }

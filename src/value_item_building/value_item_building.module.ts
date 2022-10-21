@@ -8,5 +8,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 	imports: [TypeOrmModule.forFeature([ValueItemBuilding])],
 	controllers: [ValueItemBuildingController],
 	providers: [ValueItemBuildingService],
+	exports: [ValueItemBuildingService],
 })
 export class ValueItemBuildingModule {}

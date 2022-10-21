@@ -11,6 +11,7 @@ import { RedirectionService } from "./redirection.service";
 import { CreateRedirectionDto } from "./dto/create-redirection.dto";
 import { UpdateRedirectionDto } from "./dto/update-redirection.dto";
 import { ApiTags } from "@nestjs/swagger";
+import { Step } from "../database/enum";
 
 @ApiTags("redirection")
 @Controller("redirection")
@@ -30,6 +31,11 @@ export class RedirectionController {
 	@Get(":id")
 	findOne(@Param("id") id: string) {
 		return this.redirectionService.findOne(+id);
+	}
+
+	@Get("findByStep/:step")
+	findByStep(@Param("step") step: Step) {
+		return this.redirectionService.findByStep(step);
 	}
 
 	@Patch(":id")

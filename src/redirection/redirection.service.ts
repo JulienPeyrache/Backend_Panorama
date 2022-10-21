@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { Step } from "../database/enum";
 import { DeleteResult, Repository, UpdateResult } from "typeorm";
 import { CreateRedirectionDto } from "./dto/create-redirection.dto";
 import { UpdateRedirectionDto } from "./dto/update-redirection.dto";
@@ -24,6 +25,13 @@ export class RedirectionService {
 
 	async findOne(id: number): Promise<Redirection> {
 		return this.redirectionRepository.findOneBy({ id: id });
+	}
+
+	async findByStep(step: Step): Promise<Redirection[]> {
+		return this.redirectionRepository.find({
+			where: { step: step },
+			order: { id: "ASC" },
+		});
 	}
 
 	async update(

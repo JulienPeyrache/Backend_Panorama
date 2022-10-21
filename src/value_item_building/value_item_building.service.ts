@@ -47,10 +47,13 @@ export class ValueItemBuildingService {
 		return this.valueItemBuildingRepository.delete(id);
 	}
 
-	async findByItemId(itemId: number): Promise<ValueItemBuilding[]> {
-		return this.valueItemBuildingRepository.find({
-			where: { itemId: itemId },
-			order: { id: "ASC" },
+	async findByItemAndBuildingId(
+		itemId: number,
+		buildingId: number
+	): Promise<ValueItemBuilding> {
+		return this.valueItemBuildingRepository.findOneBy({
+			itemId: itemId,
+			buildingId: buildingId,
 		});
 	}
 }
