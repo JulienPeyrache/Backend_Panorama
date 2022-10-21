@@ -21,6 +21,12 @@ services:
     ports:
       - 8080:8080
 
+  rasa: 
+    image: rasa:latest
+    ports: 
+    - 5005:5005
+  
+
 volumes:
   mysql-data:
 
