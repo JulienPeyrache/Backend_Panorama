@@ -58,6 +58,11 @@ export class ItemController {
 		return availableItems;
 	}
 
+	@Get("findByStep/:step")
+	async findByStep(@Param("step") step: Step) {
+		return this.itemService.findByStep(step);
+	}
+
 	@Get("findByAttachedServiceId/:id")
 	findByAttachedServiceId(@Param("id") id: string) {
 		return this.itemService.findByAttachedServiceId(+id);

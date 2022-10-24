@@ -60,6 +60,11 @@ export class EquipmentController {
 		return availableEquipments;
 	}
 
+	@Get("findByStep/:step")
+	async findByStep(@Param("step") step: Step) {
+		return this.equipmentService.findByStep(step);
+	}
+
 	@Patch(":id")
 	update(
 		@Param("id") id: string,
