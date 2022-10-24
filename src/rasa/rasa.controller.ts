@@ -1,8 +1,6 @@
 import { Controller, Get, Param } from "@nestjs/common";
-import {Step} from "../database/enum";
 import { HttpService } from "@nestjs/axios";
-import { json } from "stream/consumers";
-import { filter, map, Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 export interface RasaResponse {
   intent: {
     name: string;
@@ -40,11 +38,7 @@ export class RasaController {
   constructor(private readonly httpService: HttpService) {}
 
   @Get(':text')
-  findAll(@Param("text") text: string): Observable<Step[]> {
-      let steps = [];
-      let intents = [];
-      const body = {text: text};
-
+  findAll(@Param("text") text: string): Observable<string[]> {
       const options = {
           method: 'POST',
           headers: {
@@ -56,7 +50,7 @@ export class RasaController {
         map((response)=> response.data.intent_ranking),
         map((intents)=> {
           console.log(intents);
-          return intents.filter((intent)=> intent['confidence'] > 0.2).map((intent)=> intent['name']);
+          return intents.filter((intent)=> intent['confidence'] > 0.2).map((intent)=> intent['name'];
         })
       );
       }
