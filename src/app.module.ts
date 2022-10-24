@@ -10,6 +10,7 @@ import { ValueEquipmentBuildingModule } from "./value_equipment_building/value_e
 import { ValueItemBuildingModule } from "./value_item_building/value_item_building.module";
 import { RedirectionModule } from './redirection/redirection.module';
 import ormConfigOptions from "./database/typeormoptions.config";
+import { RasaModule } from "./rasa/rasa.module";
 
 @Module({
 	imports: [
@@ -23,6 +24,7 @@ import ormConfigOptions from "./database/typeormoptions.config";
 		ValueEquipmentBuildingModule,
 		ValueItemBuildingModule,
 		RedirectionModule,
+		RasaModule,
 	],
 })
 export class AppModule {}
