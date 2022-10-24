@@ -50,7 +50,7 @@ export class RasaController {
         map((response)=> response.data.intent_ranking),
         map((intents)=> {
           console.log(intents);
-          return intents.filter((intent)=> intent['confidence'] > 0.2).map((intent)=> intent['name'];
+          return intents.filter((intent)=> intent['confidence'] > 0.2).map((intent)=> intent['name']);
         })
       );
       }
