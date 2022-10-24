@@ -50,4 +50,14 @@ export class ValueEquipmentBuildingService {
 			order: { equipmentId: "ASC" },
 		});
 	}
+
+	async findByEquipmentAndBuildingId(
+		equipmentId: number,
+		buildingId: number
+	): Promise<ValueEquipmentBuilding> {
+		return this.valueEquipmentBuildingRepository.findOneBy({
+			equipmentId: equipmentId,
+			buildingId: buildingId,
+		});
+	}
 }

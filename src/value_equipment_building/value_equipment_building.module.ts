@@ -5,8 +5,9 @@ import { ValueEquipmentBuilding } from "./entities/value_equipment_building.enti
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ValueEquipmentBuilding])],
-  controllers: [ValueEquipmentBuildingController],
-  providers: [ValueEquipmentBuildingService],
+	imports: [TypeOrmModule.forFeature([ValueEquipmentBuilding])],
+	controllers: [ValueEquipmentBuildingController],
+	providers: [ValueEquipmentBuildingService],
+	exports: [ValueEquipmentBuildingService],
 })
 export class ValueEquipmentBuildingModule {}
