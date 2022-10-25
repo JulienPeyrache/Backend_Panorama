@@ -48,7 +48,7 @@ export class RasaController {
 		};
 
 		return this.httpService
-			.post("http://localhost:5005/model/parse", { text: text }, options)
+			.post( process.env.RASA_HOST.concat("/model/parse"), { text: text }, options)
 			.pipe(
 				map((response) => response.data.intent_ranking),
 				map((intents) => {
