@@ -25,10 +25,10 @@ services:
         - 3000:3000
     environment:
       - DATABASE_HOST=mysql
-      - DATABASE_NAME=panorama_db
+      - DATABASE_NAME=panorama-db
       - DATABASE_USER=panorama
       - DATABASE_PASSWORD=panorama
-      - RASA_HOST=http:/localhost:5005
+      - RASA_HOST=http://localhost:5005
     depends_on:
       - mysql
 
