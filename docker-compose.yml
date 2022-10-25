@@ -3,7 +3,6 @@ version: '3.8'
 services:  
   mysql:
     image: mysql:8
-    container_name: db
     restart: unless-stopped
     environment:
       MYSQL_USER: panorama
@@ -20,6 +19,17 @@ services:
       ADMINER_DEFAULT_SERVER: mysql
     ports:
       - 8080:8080
+  app:
+    build: .
+    ports:
+        - 3000:3000
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_NAME=panorama_db
+      - DATABASE_USER=panorama
+      - DATABASE_PASSWORD=panorama
+    depends_on:
+      - mysql
 
   rasa: 
     image: rasa:latest
@@ -29,4 +39,3 @@ services:
 
 volumes:
   mysql-data:
-
